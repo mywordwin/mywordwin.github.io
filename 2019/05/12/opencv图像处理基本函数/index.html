@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="opencv,">
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="opencv图像处理函数的基本使用（以及粗略原理）">
+<meta name="keywords" content="opencv">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://mywordwin.cn/2019/03/17/hello-world/index.html">
+<meta property="og:title" content="opencv图像处理基本函数">
+<meta property="og:url" content="http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/index.html">
 <meta property="og:site_name" content="On the way">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="opencv图像处理函数的基本使用（以及粗略原理）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T08:19:08.531Z">
+<meta property="og:image" content="http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/3.png">
+<meta property="og:updated_time" content="2019-05-13T06:11:47.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="opencv图像处理基本函数">
+<meta name="twitter:description" content="opencv图像处理函数的基本使用（以及粗略原理）">
+<meta name="twitter:image" content="http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/3.png">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://mywordwin.cn/2019/03/17/hello-world/">
+  <link rel="canonical" href="http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/">
 
 
 
 
 
-  <title>Hello World | On the way</title>
+  <title>opencv图像处理基本函数 | On the way</title>
   
 
 
@@ -252,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/03/17/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mywordwin">
@@ -269,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">opencv图像处理基本函数</h1>
         
 
         <div class="post-meta">
@@ -281,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T13:51:37+08:00">
-                2019-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-12T21:05:58+08:00">
+                2019-05-12
               </time>
             
 
@@ -291,6 +294,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/opencv/" itemprop="url" rel="index">
+                    <span itemprop="name">opencv</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,11 +344,75 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+        <h1 id="opencv图像处理函数的基本使用（以及粗略原理）"><a href="#opencv图像处理函数的基本使用（以及粗略原理）" class="headerlink" title="opencv图像处理函数的基本使用（以及粗略原理）"></a>opencv图像处理函数的基本使用（以及粗略原理）</h1><a id="more"></a>
+<h2 id="一-基本函数"><a href="#一-基本函数" class="headerlink" title="一.基本函数"></a>一.基本函数</h2><p>1.cv2.imread()：读入图片，共两个参数，第一个参数为要读入的图片文件名，第二个参数为如何读取图片，包括cv2.IMREAD_COLOR：读入一副彩色图片；cv2.IMREAD_GRAYSCALE：以灰度模式读入图片；</p>
+<p>2.cv2.IMREAD_UNCHANGED：读入一幅图片，并包括其alpha通道。</p>
+<p>3.cv2.imshow()：创建一个窗口显示图片，共两个参数，第一个参数表示窗口名字，可以创建多个窗口中，但是每个窗口不能重名；第二个参数是读入的图片。</p>
+<p>4.cv2.waitKey()：键盘绑定函数，共一个参数，表示等待毫秒数，将等待特定的几毫秒，看键盘是否有输入，返回值为ASCII值。如果其参数为0，则表示无限期的等待键盘输入。</p>
+<p>5.cv2.destroyAllWindows()：删除建立的全部窗口。</p>
+<p>6.cv2.destroyWindows()：删除指定的窗口。</p>
+<p>7.cv2.imwrite()：保存图片，共两个参数，第一个为保存文件名，第二个为读入图片。</p>
+<h2 id="二-高斯模糊"><a href="#二-高斯模糊" class="headerlink" title="二.高斯模糊"></a>二.高斯模糊</h2><blockquote>
+<p>效果:<br>可以来退出由照相机或其他环境产生的噪声，减少在边缘提取时的其余边缘的数目。高斯模糊本质上是低通滤波器，输出图像的每个像素点是原图像上对应像素点与周围像素点的加权和</p>
+</blockquote>
+<p><code>blur = cv2.GaussianBlur(img,(5,5),0)</code><br>这里(5, 5)表示高斯矩阵的长与宽都是5，标准差取0时OpenCV会根据高斯矩阵的尺寸自己计算。概括地讲，高斯矩阵的尺寸越大，标准差越大，处理过的图像模糊程度越大。也可以自己构造高斯核，相关函数cv2.GaussianKernel().</p>
+<p>详细原理见<a href="&quot;&quot;">高斯分布原理</a></p>
+<h2 id="三-中值滤波"><a href="#三-中值滤波" class="headerlink" title="三.中值滤波"></a>三.中值滤波</h2><p>中值滤波是基于排序统计理论的一种能有效抑制噪声的非线性信号处理技术，对脉冲噪声有良好的滤除作用，特别是在滤除噪声的同时，能够保护信号的边缘，使之不被模糊。这些优良特性是线性滤波方法所不具有的。此外，中值滤波的算法比较简单，也易于用硬件实现。</p>
+<p>中值滤波就是将当前像素值替换为模板覆盖范围内的所有像素值中大小居中那一个：对于一个3*3的模板，第5大的就是中值：<br>（10,15,20,20,20,20,20,25,100）</p>
+<p>中值滤波使得那些更亮（或者更暗）的点更像他周围的值。所以它在滤除噪音的同时，可以较好地保留细节轮廓。</p>
+<p><code>cv2.medianBlur(gaussian, 5)</code></p>
+<h2 id="四-soble算子边缘检测"><a href="#四-soble算子边缘检测" class="headerlink" title="四.soble算子边缘检测"></a>四.soble算子边缘检测</h2><p>对噪声具有平滑作用，提供较为精确的边缘方向信息，边缘定位精度不够高；<br>当对精度要求不是很高时，是一种较为常用的边缘检测方法。</p>
+<p><code>sobelx = cv2.Sobel(img,cv2.CV_64F, 1, 0, ksize=3)</code></p>
+<ol>
+<li>img表示源图像，即进行边缘检测的图像</li>
+<li>cv2.CV_64F表示64位浮点数即64float。这里不使用</li>
+<li>numpy.float64，因为可能会发生溢出现象</li>
+<li>第三和第四个参数分别是对X和Y方向的导数（即dx,dy），这里1表示对X求偏导，0表示不对Y求导。其中，X还可以求2次导。<br>注意：对X求导就是检测垂直方向的边缘，对Y求导是检测水平方向的边缘</li>
+<li>第五个参数ksize是指核的大小。<br>这里说明一下，这个参数的前四个参数都没有给谁赋值，而ksize则是被赋值的对象。实际上，这时可省略的参数，而前四个是不可省的参数。注意其中的不同点</li>
+</ol>
+<p>详细原理见<a href="&quot;&quot;">soble算子边缘检测原理</a></p>
+<h2 id="五-图像固定阈值二值化处理threshold"><a href="#五-图像固定阈值二值化处理threshold" class="headerlink" title="五.图像固定阈值二值化处理threshold"></a>五.图像固定阈值二值化处理threshold</h2><p>定义：图像的二值化，就是将图像上的像素点的灰度值设置为0或255，也就是将整个图像呈现出明显的只有黑和白的视觉效果。</p>
+<p>灰度值0：黑，灰度值255：白</p>
+<p>   一幅图像包括目标物体、背景还有噪声，要想从多值的数字图像中直接提取出目标物体，常用的方法就是设定一个阈值T，用T将图像的数据分成两部分：大于T的像素群和小于T的像素群。这是研究灰度变换的最特殊的方法，称为图像的二值化（Binarization）。</p>
+<p><code>ret, binary =cv2.threshold(img, threshold, maxval,type)</code></p>
+<ol>
+<li>threshold是设定的阈值</li>
+<li>maxval是当灰度值大于（或小于）阈值时将该灰度值赋成的值</li>
+<li>type规定的是当前二值化的方式</li>
+</ol>
+<ul>
+<li>cv2.THRESH_BINARY    大于阈值的部分被置为255，小于部分被置为0 </li>
+<li>cv2.THRESH_BINARY_INV    大于阈值部分被置为0，小于部分被置为255 </li>
+<li>cv2.THRESH_TRUNC     大于阈值部分被置为threshold，小于部分保持原样</li>
+<li>cv2.THRESH_TOZERO   小于阈值部分被置为0，大于部分保持不变</li>
+<li>cv2.THRESH_TOZERO_INV    大于阈值部分被置为0，小于部分保持不变 </li>
+</ul>
+<p>其实还有很重要的cv2.THRESH_OTSU   作为图像自适应二值化的一个很优的算法Otsu大津算法的参数：<br>使用为cv2.threshold(img, 0, 255, cv2.THRESH_OTSU )</p>
+<h2 id="六-膨胀和腐蚀"><a href="#六-膨胀和腐蚀" class="headerlink" title="六.膨胀和腐蚀"></a>六.膨胀和腐蚀</h2><blockquote>
+<p> 膨胀：<br>此操作将图像(A)与任意形状的内核 (B)，通常为正方形或圆形,进行卷积。内核 B 有一个可定义的 锚点, 通常定义为内核中心点。进行膨胀操作时，将内核 B 划过图像,将内核 B 覆盖区域的最大相素值提取，并代替锚点位置的相素。显然，这一最大化操作将会导致图像中的亮区开始”扩展” (因此有了术语膨胀 dilation )。 这种操作会造成图像中像素值高的区域变大，而像素值小的区域变小，等一下看你一下效果你就知道了！！！</p>
+</blockquote>
+<blockquote>
+<p>腐蚀：<br>跟膨胀操作造作的效果刚好相反。腐蚀在形态学操作家族里是膨胀操作的孪生姐妹。它提取的是内核覆盖下的相素最小值。进行腐蚀操作时，将内核 B 划过图像,将内核 B 覆盖区域的最小相素值提取，并代替锚点位置的相素。以与膨胀相同的图像作为样本,我们使用腐蚀操作。</p>
+</blockquote>
+<p>我们一般使用函数 getStructuringElement配合这个参数的使用。getStructuringElement函数会返回指定形状和尺寸的结构元素（内核矩阵）。</p>
+<p><code>element1 = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 1))</code></p>
+<p>内核矩形：MORPH_RECT，第二个参数是内核的尺寸</p>
+<p>膨胀一次，让轮廓突出</p>
+<p><code>dilation = cv2.dilate(binary, element2, iterations=1)</code></p>
+<p>腐蚀一次，去掉细节</p>
+<p><code>erosion = cv2.erode(dilation, element1, iterations=1)</code><br>(iterations:迭代)</p>
+<h2 id="七-轮廓检测与绘制"><a href="#七-轮廓检测与绘制" class="headerlink" title="七.轮廓检测与绘制"></a>七.轮廓检测与绘制</h2><p><code>contours, hierarchy = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)</code></p>
+<p>三个输入参数：输入图像（二值图像），轮廓检索方式，轮廓近似方法</p>
+<ul>
+<li>cv2.RETR_TREE:建立一个等级树结构的轮廓</li>
+<li>cv2.CHAIN_APPROX_SIMPLE:压缩垂直、水平、对角方向，只保留端点</li>
+</ul>
+<p>返回值：轮廓，轮廓的层析结构</p>
+<p>绘制轮廓<br><code>cv2.drawContours(img, [box], -1, (0, 255, 0), 2)</code></p>
+<p>五个输入参数：原始图像，轮廓（python列表），轮廓的索引（当设置为-1时，绘制所有轮廓），画笔颜色，画笔大小</p>
+<h2 id="八-最小面积矩形"><a href="#八-最小面积矩形" class="headerlink" title="八.最小面积矩形"></a>八.最小面积矩形</h2><p><code>rect = cv2.minAreaRect(points)</code><br>其中points是点集，数据类型为ndarray，array((x1,y1),(x2,y2),….,(xn,yn))<br>而minAreaRect就是求出在上述点集下的最小面积矩形</p>
+<p> rect[0]返回矩形的中心点，（x,y），实际上为y行x列的像素点</p>
+<p>利用：cv2.boxPoints(rect)可以返回四个点的值，其中cv2.boxPoints(rect)[0]为point[0]，cv2.boxPoints(rect)[1]为point[1]……<br><img src="/2019/05/12/opencv图像处理基本函数/3.png" alt></p>
 
       
     </div>
@@ -344,7 +433,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://mywordwin.cn/2019/03/17/hello-world/" title="Hello World">http://mywordwin.cn/2019/03/17/hello-world/</a>
+    <a href="http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/" title="opencv图像处理基本函数">http://mywordwin.cn/2019/05/12/opencv图像处理基本函数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -357,6 +446,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/opencv/" rel="tag"># opencv</a>
+          
+        </div>
+      
 
       
       
@@ -366,15 +461,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/08/最优解-正规方程/" rel="next" title="最优解-正规方程">
+                <i class="fa fa-chevron-left"></i> 最优解-正规方程
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/23/搭建个人博客时遇到的问题/" rel="prev" title="搭建个人博客时遇到的问题">
-                搭建个人博客时遇到的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#opencv图像处理函数的基本使用（以及粗略原理）"><span class="nav-number">1.</span> <span class="nav-text">opencv图像处理函数的基本使用（以及粗略原理）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-基本函数"><span class="nav-number">1.1.</span> <span class="nav-text">一.基本函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-高斯模糊"><span class="nav-number">1.2.</span> <span class="nav-text">二.高斯模糊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-中值滤波"><span class="nav-number">1.3.</span> <span class="nav-text">三.中值滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-soble算子边缘检测"><span class="nav-number">1.4.</span> <span class="nav-text">四.soble算子边缘检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-图像固定阈值二值化处理threshold"><span class="nav-number">1.5.</span> <span class="nav-text">五.图像固定阈值二值化处理threshold</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-膨胀和腐蚀"><span class="nav-number">1.6.</span> <span class="nav-text">六.膨胀和腐蚀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七-轮廓检测与绘制"><span class="nav-number">1.7.</span> <span class="nav-text">七.轮廓检测与绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八-最小面积矩形"><span class="nav-number">1.8.</span> <span class="nav-text">八.最小面积矩形</span></a></li></ol></li></ol></div>
             
 
           </div>
