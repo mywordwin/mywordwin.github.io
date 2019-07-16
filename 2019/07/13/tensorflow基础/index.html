@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="TensorFlow基础,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="TensorFlow学习过程的基础使用和总结，不断更新">
+<meta name="keywords" content="TensorFlow基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow基础">
+<meta property="og:url" content="http://mywordwin.cn/2019/07/13/tensorflow基础/index.html">
+<meta property="og:site_name" content="On the way">
+<meta property="og:description" content="TensorFlow学习过程的基础使用和总结，不断更新">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://mywordwin.cn/2019/07/13/tensorflow基础/1.jpg">
+<meta property="og:image" content="http://mywordwin.cn/2019/07/13/tensorflow基础/2.jpg">
+<meta property="og:image" content="http://mywordwin.cn/2019/07/13/tensorflow基础/3.jpg">
+<meta property="og:image" content="http://mywordwin.cn/2019/07/13/tensorflow基础/4.jpg">
+<meta property="og:updated_time" content="2019-07-15T11:05:59.503Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow基础">
+<meta name="twitter:description" content="TensorFlow学习过程的基础使用和总结，不断更新">
+<meta name="twitter:image" content="http://mywordwin.cn/2019/07/13/tensorflow基础/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mywordwin.cn/2019/07/13/tensorflow基础/">
+
+
+
+
+
+  <title>TensorFlow基础 | On the way</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">On the way</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/07/13/tensorflow基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mywordwin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="On the way">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TensorFlow基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T22:13:23+08:00">
+                2019-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="TensorFlow学习过程的基础使用和总结，不断更新"><a href="#TensorFlow学习过程的基础使用和总结，不断更新" class="headerlink" title="TensorFlow学习过程的基础使用和总结，不断更新"></a>TensorFlow学习过程的基础使用和总结，不断更新</h1><a id="more"></a>
+<h3 id="1-用CNN网络进行图片处理，就会遇到卷积、池化后的图像大小问题，一般搜到的答案是这样的："><a href="#1-用CNN网络进行图片处理，就会遇到卷积、池化后的图像大小问题，一般搜到的答案是这样的：" class="headerlink" title="(1).用CNN网络进行图片处理，就会遇到卷积、池化后的图像大小问题，一般搜到的答案是这样的："></a>(1).用CNN网络进行图片处理，就会遇到卷积、池化后的图像大小问题，一般搜到的答案是这样的：<img src="/2019/07/13/tensorflow基础/1.jpg" alt></h3><h3 id="对于初学者，看到这个公式的唯一疑问是：P值到底是多少？在Tensoflow中，Padding有2个选型，’SAME’和’VALID’-，"><a href="#对于初学者，看到这个公式的唯一疑问是：P值到底是多少？在Tensoflow中，Padding有2个选型，’SAME’和’VALID’-，" class="headerlink" title="对于初学者，看到这个公式的唯一疑问是：P值到底是多少？在Tensoflow中，Padding有2个选型，’SAME’和’VALID’ ，"></a>对于初学者，看到这个公式的唯一疑问是：P值到底是多少？在Tensoflow中，Padding有2个选型，’SAME’和’VALID’ ，</h3><h3 id="如果-Padding-39-SAME-39-，输出尺寸为：-W-S"><a href="#如果-Padding-39-SAME-39-，输出尺寸为：-W-S" class="headerlink" title="如果 Padding=&#39;SAME&#39;，输出尺寸为： W / S"></a><code>如果 Padding=&#39;SAME&#39;，输出尺寸为： W / S</code></h3><h3 id="如果-Padding-39-VALID-39-，输出尺寸为：-W-F-1-S"><a href="#如果-Padding-39-VALID-39-，输出尺寸为：-W-F-1-S" class="headerlink" title="如果 Padding=&#39;VALID&#39;，输出尺寸为：(W - F + 1) / S"></a><code>如果 Padding=&#39;VALID&#39;，输出尺寸为：(W - F + 1) / S</code></h3><h3 id="2-在处理图像数据的时候总会遇到输入图像的维数不符合的情况，此时tensorflow中reshape-就很好的解决了这个问题tf-reshape-tensor-shape-name-None"><a href="#2-在处理图像数据的时候总会遇到输入图像的维数不符合的情况，此时tensorflow中reshape-就很好的解决了这个问题tf-reshape-tensor-shape-name-None" class="headerlink" title="(2)在处理图像数据的时候总会遇到输入图像的维数不符合的情况，此时tensorflow中reshape()就很好的解决了这个问题tf.reshape(tensor,shape,name=None)"></a>(2)在处理图像数据的时候总会遇到输入图像的维数不符合的情况，此时tensorflow中reshape()就很好的解决了这个问题<code>tf.reshape(tensor,shape,name=None)</code></h3><h3 id="函数的作用是将tensor变换为参数shape形式，其中的shape为一个列表形式，特殊的是列表可以实现逆序的遍历，即list-1-1所代表的含义是我们不用亲自去指定这一维的大小，函数会自动进行计算，但是列表中只能存在一个-1。（如果存在多个-1，就是一个存在多解的方程-。-1-的应用-1-表示不知道该填什么数字合适的情况下，可以选择，由python通过a和其他的值3推测出来，比如，这里的a-是二维的数组，数组中共有6个元素，当使用reshape-时，6-3-2，所以形成的是3行2列的二维数组，可以看出，利用reshape进行数组形状的转换时，一定要满足（x-y）中x×y-数组的个数"><a href="#函数的作用是将tensor变换为参数shape形式，其中的shape为一个列表形式，特殊的是列表可以实现逆序的遍历，即list-1-1所代表的含义是我们不用亲自去指定这一维的大小，函数会自动进行计算，但是列表中只能存在一个-1。（如果存在多个-1，就是一个存在多解的方程-。-1-的应用-1-表示不知道该填什么数字合适的情况下，可以选择，由python通过a和其他的值3推测出来，比如，这里的a-是二维的数组，数组中共有6个元素，当使用reshape-时，6-3-2，所以形成的是3行2列的二维数组，可以看出，利用reshape进行数组形状的转换时，一定要满足（x-y）中x×y-数组的个数" class="headerlink" title="函数的作用是将tensor变换为参数shape形式，其中的shape为一个列表形式，特殊的是列表可以实现逆序的遍历，即list(-1).-1所代表的含义是我们不用亲自去指定这一维的大小，函数会自动进行计算，但是列表中只能存在一个-1。（如果存在多个-1，就是一个存在多解的方程)。-1 的应用:-1 表示不知道该填什么数字合适的情况下，可以选择，由python通过a和其他的值3推测出来，比如，这里的a 是二维的数组，数组中共有6个元素，当使用reshape()时，6/3=2，所以形成的是3行2列的二维数组，可以看出，利用reshape进行数组形状的转换时，一定要满足（x,y）中x×y=数组的个数"></a>函数的作用是将tensor变换为参数shape形式，其中的shape为一个列表形式，特殊的是列表可以实现逆序的遍历，即list(-1).-1所代表的含义是我们不用亲自去指定这一维的大小，函数会自动进行计算，但是列表中只能存在一个-1。（如果存在多个-1，就是一个存在多解的方程)。-1 的应用:-1 表示不知道该填什么数字合适的情况下，可以选择，由python通过a和其他的值3推测出来，比如，这里的a 是二维的数组，数组中共有6个元素，当使用reshape()时，6/3=2，所以形成的是3行2列的二维数组，可以看出，利用reshape进行数组形状的转换时，一定要满足（x,y）中x×y=数组的个数</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = np.array([[1,2,3],[4,5,6]])</span><br><span class="line">&gt;&gt;&gt;np.reshape(a,(3,-1)) </span><br><span class="line">array([[1, 2],</span><br><span class="line">       [3, 4],</span><br><span class="line">       [5, 6]])</span><br><span class="line">&gt;&gt;&gt; np.reshape(a,(1,-1))</span><br><span class="line">array([[1, 2, 3, 4, 5, 6]])</span><br><span class="line">&gt;&gt;&gt; np.reshape(a,(6,-1))</span><br><span class="line">array([[1],</span><br><span class="line">       [2],</span><br><span class="line">       [3],</span><br><span class="line">       [4],</span><br><span class="line">       [5],</span><br><span class="line">       [6]])</span><br><span class="line">&gt;&gt;&gt; np.reshape(a,(-1,1))</span><br><span class="line">array([[1],</span><br><span class="line">       [2],</span><br><span class="line">       [3],</span><br><span class="line">       [4],</span><br><span class="line">       [5],</span><br><span class="line">       [6]])</span><br></pre></td></tr></table></figure>
+<h3 id="3-tf-placeholder-dtype-shape-None-name-None-此函数可以理解为形参，用于定义过程，在执行的时候再赋具体的"><a href="#3-tf-placeholder-dtype-shape-None-name-None-此函数可以理解为形参，用于定义过程，在执行的时候再赋具体的" class="headerlink" title="(3)tf.placeholder(dtype, shape=None, name=None)此函数可以理解为形参，用于定义过程，在执行的时候再赋具体的"></a>(3)tf.placeholder(dtype, shape=None, name=None)此函数可以理解为形参，用于定义过程，在执行的时候再赋具体的</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(tf.float32, shape=(1024, 1024))</span><br><span class="line">y = tf.matmul(x, x)</span><br><span class="line"> </span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">  print(sess.run(y))  # ERROR: 此处x还没有赋值.</span><br><span class="line"> </span><br><span class="line">  rand_array = np.random.rand(1024, 1024)</span><br><span class="line">  print(sess.run(y, feed_dict=&#123;x: rand_array&#125;))  # Will succeed.</span><br></pre></td></tr></table></figure>
+<h3 id="4-tf-nn-conv2d是TensorFlow里面实现卷积的函数"><a href="#4-tf-nn-conv2d是TensorFlow里面实现卷积的函数" class="headerlink" title="(4)tf.nn.conv2d是TensorFlow里面实现卷积的函数"></a>(4)tf.nn.conv2d是TensorFlow里面实现卷积的函数</h3><p><code>tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)</code><br> 第一个参数input：指需要做卷积的输入图像，它要求是一个Tensor，具有[batch, in_height, in_width, in_channels]这样的shape，具体含义是[训练时一个batch的图片数量, 图片高度, 图片宽度, 图像通道数]，注意这是一个4维的Tensor，要求类型为float32和float64其中之一</p>
+<p> 第二个参数filter：相当于CNN中的卷积核，它要求是一个Tensor，具有[filter_height, filter_width, in_channels, out_channels]这样的shape，具体含义是[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数]，要求类型与参数input相同，有一个地方需要注意，第三维in_channels，就是参数input的第四维</p>
+<p>第三个参数strides：卷积时在图像每一维的步长，这是一个一维的向量，长度4</p>
+<p>第四个参数padding：string类型的量，只能是”SAME”,”VALID”其中之一，这个值决定了不同的卷积方式（后面会介绍）就是VALID只能匹配内部像素；而SAME可以在图像外部补0,从而做到只要图像中的一个像素就可以和卷积核做卷积操作,而VALID不行</p>
+<p>第五个参数：use_cudnn_on_gpu:bool类型，是否使用cudnn加速，默认为true结果<br>返回一个Tensor，这个输出，就是我们常说的feature map</p>
+<h3 id="5-max-pooling是CNN当中的最大值池化操作，其实用法和卷积很类似tf-nn-max-pool-value-ksize-strides-padding-name-None-参数是四个，和卷积很类似："><a href="#5-max-pooling是CNN当中的最大值池化操作，其实用法和卷积很类似tf-nn-max-pool-value-ksize-strides-padding-name-None-参数是四个，和卷积很类似：" class="headerlink" title="(5)max pooling是CNN当中的最大值池化操作，其实用法和卷积很类似tf.nn.max_pool(value, ksize, strides, padding, name=None)参数是四个，和卷积很类似："></a>(5)max pooling是CNN当中的最大值池化操作，其实用法和卷积很类似<code>tf.nn.max_pool(value, ksize, strides, padding, name=None)</code>参数是四个，和卷积很类似：</h3><p>第一个参数value：需要池化的输入，一般池化层接在卷积层后面，所以输入通常是feature map，依然是[batch, height, width, channels]这样的shape</p>
+<p>第二个参数ksize：池化窗口的大小，取一个四维向量，一般是[1, height, width, 1]，因为我们不想在batch和channels上做池化，所以这两个维度设为了1</p>
+<p>第三个参数strides：和卷积类似，窗口在每一个维度上滑动的步长，一般也是[1, stride,stride, 1]</p>
+<p>第四个参数padding：和卷积类似，可以取’VALID’ 或者’SAME’<br>返回一个Tensor，类型不变，shape仍然是[batch, height, width, channels]这种形式</p>
+<h3 id="6-常用的激活函数tf-nn-relu-features-name-None-max-0-features"><a href="#6-常用的激活函数tf-nn-relu-features-name-None-max-0-features" class="headerlink" title="(6)常用的激活函数tf.nn.relu(features, name=None)  = max(0,features)"></a>(6)常用的激活函数<code>tf.nn.relu(features, name=None)  = max(0,features)</code></h3><h3 id="一般features会是-卷积核-图像-的卷积后加上biastf-nn-relu-tf-nn-conv2d-x-image-w-conv1-strides-1-1-1-1-padding-39-SAME-39-b-conv1"><a href="#一般features会是-卷积核-图像-的卷积后加上biastf-nn-relu-tf-nn-conv2d-x-image-w-conv1-strides-1-1-1-1-padding-39-SAME-39-b-conv1" class="headerlink" title="一般features会是(卷积核,图像)的卷积后加上biastf.nn.relu(tf.nn.conv2d(x_image, w_conv1, strides=[1, 1, 1, 1], padding=&#39;SAME&#39;) + b_conv1)"></a>一般features会是(卷积核,图像)的卷积后加上bias<code>tf.nn.relu(tf.nn.conv2d(x_image, w_conv1, strides=[1, 1, 1, 1], padding=&#39;SAME&#39;) + b_conv1)</code></h3><p><img src="/2019/07/13/tensorflow基础/2.jpg" alt></p>
+<h3 id="7-tf-nn-dropout-是tensorflow里面为了防止或减轻过拟合而使用的函数，它一般用在全连接层tf-nn-dropout-x-keep-prob-noise-shape-None-seed-None-name-None"><a href="#7-tf-nn-dropout-是tensorflow里面为了防止或减轻过拟合而使用的函数，它一般用在全连接层tf-nn-dropout-x-keep-prob-noise-shape-None-seed-None-name-None" class="headerlink" title="(7)tf.nn.dropout()是tensorflow里面为了防止或减轻过拟合而使用的函数，它一般用在全连接层tf.nn.dropout(x, keep_prob, noise_shape=None, seed=None,name=None)"></a>(7)tf.nn.dropout()是tensorflow里面为了防止或减轻过拟合而使用的函数，它一般用在全连接层<code>tf.nn.dropout(x, keep_prob, noise_shape=None, seed=None,name=None)</code></h3><p> x为输入，keep_prob 概率参数可以为 tensor，意味着，训练时候 feed 为0.5，测试时候 feed 为 1.0 就 OK。return：包装了dropout的x。训练的时候用，test的时候就不需要dropout了</p>
+<h3 id="8-通过Softmax回归，将logistic的预测二分类的概率的问题推广到了n分类的概率的问题。tf-nn-softmax-logits-axis-None-name-None-dim-None-更新说明：dim被弃用，用axis代替"><a href="#8-通过Softmax回归，将logistic的预测二分类的概率的问题推广到了n分类的概率的问题。tf-nn-softmax-logits-axis-None-name-None-dim-None-更新说明：dim被弃用，用axis代替" class="headerlink" title="(8)通过Softmax回归，将logistic的预测二分类的概率的问题推广到了n分类的概率的问题。tf.nn.softmax(logits,axis=None,name=None,dim=None)更新说明：dim被弃用，用axis代替"></a>(8)通过Softmax回归，将logistic的预测二分类的概率的问题推广到了n分类的概率的问题。<code>tf.nn.softmax(logits,axis=None,name=None,dim=None)更新说明：dim被弃用，用axis代替</code></h3><p>下面的几行代码说明一下用法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">A = [1.0,2.0,3.0,4.0,5.0,6.0]</span><br><span class="line">with tf.Session() as sess: </span><br><span class="line">print sess.run(tf.nn.softmax(A))</span><br></pre></td></tr></table></figure></p>
+<p>结果<br>[ 0.00426978 0.01160646 0.03154963 0.08576079 0.23312201 0.63369131]</p>
+<h3 id="dim-1时，在最后一个维度上进行softmax（默认）"><a href="#dim-1时，在最后一个维度上进行softmax（默认）" class="headerlink" title="dim=-1时，在最后一个维度上进行softmax（默认）"></a>dim=-1时，在最后一个维度上进行softmax（默认）</h3><h3 id="dim-0时，在第一个维度上进行softmax"><a href="#dim-0时，在第一个维度上进行softmax" class="headerlink" title="dim=0时，在第一个维度上进行softmax"></a>dim=0时，在第一个维度上进行softmax</h3><h3 id="9-调用reduce-sum-arg1-arg2-时，参数arg1即为要求和的数据，arg2有两个取值分别为0和1，通常用reduction-indices-0-或reduction-indices-1-来传递参数。从上图可以看出，当arg2-0时，是纵向对矩阵求和，原来矩阵有几列就得到几个值；相似地，当arg2-1时，是横向对矩阵求和；当省略arg2参数时，默认对矩阵所有元素进行求和。"><a href="#9-调用reduce-sum-arg1-arg2-时，参数arg1即为要求和的数据，arg2有两个取值分别为0和1，通常用reduction-indices-0-或reduction-indices-1-来传递参数。从上图可以看出，当arg2-0时，是纵向对矩阵求和，原来矩阵有几列就得到几个值；相似地，当arg2-1时，是横向对矩阵求和；当省略arg2参数时，默认对矩阵所有元素进行求和。" class="headerlink" title="(9)调用reduce_sum(arg1, arg2)时，参数arg1即为要求和的数据，arg2有两个取值分别为0和1，通常用reduction_indices=[0]或reduction_indices=[1]来传递参数。从上图可以看出，当arg2 = 0时，是纵向对矩阵求和，原来矩阵有几列就得到几个值；相似地，当arg2 = 1时，是横向对矩阵求和；当省略arg2参数时，默认对矩阵所有元素进行求和。"></a>(9)调用<code>reduce_sum(arg1, arg2)</code>时，参数arg1即为要求和的数据，arg2有两个取值分别为0和1，通常用reduction_indices=[0]或reduction_indices=[1]来传递参数。从上图可以看出，当arg2 = 0时，是纵向对矩阵求和，原来矩阵有几列就得到几个值；相似地，当arg2 = 1时，是横向对矩阵求和；当省略arg2参数时，默认对矩阵所有元素进行求和。</h3><p><img src="/2019/07/13/tensorflow基础/3.jpg" alt></p>
+<h3 id="看到这里，函数名的前缀为什么是reduce-其实也就很容易理解了，reduce就是“对矩阵降维”的含义，下划线后面的部分就是降维的方式，在reduce-sum-中就是按照求和的方式对矩阵降维。那么其他reduce前缀的函数也举一反三了，比如reduce-mean-就是按照某个维度求平均值，等等。"><a href="#看到这里，函数名的前缀为什么是reduce-其实也就很容易理解了，reduce就是“对矩阵降维”的含义，下划线后面的部分就是降维的方式，在reduce-sum-中就是按照求和的方式对矩阵降维。那么其他reduce前缀的函数也举一反三了，比如reduce-mean-就是按照某个维度求平均值，等等。" class="headerlink" title="看到这里，函数名的前缀为什么是reduce_其实也就很容易理解了，reduce就是“对矩阵降维”的含义，下划线后面的部分就是降维的方式，在reduce_sum()中就是按照求和的方式对矩阵降维。那么其他reduce前缀的函数也举一反三了，比如reduce_mean()就是按照某个维度求平均值，等等。"></a>看到这里，函数名的前缀为什么是reduce_其实也就很容易理解了，reduce就是“对矩阵降维”的含义，下划线后面的部分就是降维的方式，在reduce_sum()中就是按照求和的方式对矩阵降维。那么其他reduce前缀的函数也举一反三了，比如reduce_mean()就是按照某个维度求平均值，等等。</h3><h3 id="10-经典损失函数：交叉熵"><a href="#10-经典损失函数：交叉熵" class="headerlink" title="(10)经典损失函数：交叉熵"></a>(10)经典损失函数：交叉熵</h3><p><img src="/2019/07/13/tensorflow基础/4.jpg" alt></p>
+<h3 id="注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。那么，在神经网络中怎样把前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常有用的方法。（所以面试官会经常问你，为什么交叉熵经常要个softmax一起使用？）"><a href="#注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。那么，在神经网络中怎样把前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常有用的方法。（所以面试官会经常问你，为什么交叉熵经常要个softmax一起使用？）" class="headerlink" title="注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。那么，在神经网络中怎样把前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常有用的方法。（所以面试官会经常问你，为什么交叉熵经常要个softmax一起使用？）"></a>注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。那么，在神经网络中怎样把前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常有用的方法。（所以面试官会经常问你，为什么交叉熵经常要个softmax一起使用？）</h3><p><code>cross_entropy=-tf.reduce_mean(y_*tf.log(tf.clip_by_value(y,1e-10,1.0)))</code></p>
+<p>其中y_就代表p,也就是正确结果（或者说标签），y代表q，也就是预测结果（或者说实际输出）。</p>
+<p>这里的tf.reduce_mean()是求一个平均值，具体是这样的：</p>
+<p>tf.reduce_mean(x):就是求所有元素的平均值；</p>
+<p>tf.reduce_mean(x,0):就是求维度为0的平均值，也就是求列平均；</p>
+<p>tf.reduce_mean(x,1)：就是求维度为1的平均值，也就是求行平均。</p>
+<p>这里的tf.clip_by_value(v,a,b):表示把v限制在a~b的范围内，小于a的让它等于a,大于b的让它等于b。（通俗易懂）</p>
+<p><code>还有一个要注意的点：代码中的*，这里的*不是矩阵相乘，而是元素之间直接相乘。矩阵乘法需要用tf.matmul函数来完成。</code></p>
+<h3 id="因为交叉熵一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了同一封装，并提供了tf-nn-softmax-cross-entropy-with-logits函数。比如可以直接通过以下代码实现了sotfmax回归之后的交叉熵损失函数："><a href="#因为交叉熵一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了同一封装，并提供了tf-nn-softmax-cross-entropy-with-logits函数。比如可以直接通过以下代码实现了sotfmax回归之后的交叉熵损失函数：" class="headerlink" title="因为交叉熵一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了同一封装，并提供了tf.nn.softmax_cross_entropy_with_logits函数。比如可以直接通过以下代码实现了sotfmax回归之后的交叉熵损失函数："></a>因为交叉熵一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了同一封装，并提供了tf.nn.softmax_cross_entropy_with_logits函数。比如可以直接通过以下代码实现了sotfmax回归之后的交叉熵损失函数：</h3><p><code>cross_entropy=tf.nn.sparse_sotfmax_cross_entropy_with_logits(label=y_,logits=y)</code></p>
+<h3 id="这里y代表神经网络的原始输出（就是还没有经过sotfmax的输出），而y-是给出的标准答案。"><a href="#这里y代表神经网络的原始输出（就是还没有经过sotfmax的输出），而y-是给出的标准答案。" class="headerlink" title="这里y代表神经网络的原始输出（就是还没有经过sotfmax的输出），而y_是给出的标准答案。"></a>这里y代表神经网络的原始输出（就是还没有经过sotfmax的输出），而y_是给出的标准答案。</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    mywordwin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://mywordwin.cn/2019/07/13/tensorflow基础/" title="TensorFlow基础">http://mywordwin.cn/2019/07/13/tensorflow基础/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow基础/" rel="tag"># TensorFlow基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/10/python-opencv-cnn车牌识别/" rel="next" title="python+opencv+cnn车牌识别">
+                <i class="fa fa-chevron-left"></i> python+opencv+cnn车牌识别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM2OC8xOTkwOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="mywordwin">
+            
+              <p class="site-author-name" itemprop="name">mywordwin</p>
+              <p class="site-description motion-element" itemprop="description">个人博客，涉及计算机知识以及学习过程中遇到的困难和疑惑。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mywordwin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:2361618726@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=2361618726&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorFlow学习过程的基础使用和总结，不断更新"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow学习过程的基础使用和总结，不断更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-用CNN网络进行图片处理，就会遇到卷积、池化后的图像大小问题，一般搜到的答案是这样的："><span class="nav-number">1.0.1.</span> <span class="nav-text">(1).用CNN网络进行图片处理，就会遇到卷积、池化后的图像大小问题，一般搜到的答案是这样的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于初学者，看到这个公式的唯一疑问是：P值到底是多少？在Tensoflow中，Padding有2个选型，’SAME’和’VALID’-，"><span class="nav-number">1.0.2.</span> <span class="nav-text">对于初学者，看到这个公式的唯一疑问是：P值到底是多少？在Tensoflow中，Padding有2个选型，’SAME’和’VALID’ ，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果-Padding-39-SAME-39-，输出尺寸为：-W-S"><span class="nav-number">1.0.3.</span> <span class="nav-text">如果 Padding=&#39;SAME&#39;，输出尺寸为： W / S</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果-Padding-39-VALID-39-，输出尺寸为：-W-F-1-S"><span class="nav-number">1.0.4.</span> <span class="nav-text">如果 Padding=&#39;VALID&#39;，输出尺寸为：(W - F + 1) / S</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在处理图像数据的时候总会遇到输入图像的维数不符合的情况，此时tensorflow中reshape-就很好的解决了这个问题tf-reshape-tensor-shape-name-None"><span class="nav-number">1.0.5.</span> <span class="nav-text">(2)在处理图像数据的时候总会遇到输入图像的维数不符合的情况，此时tensorflow中reshape()就很好的解决了这个问题tf.reshape(tensor,shape,name=None)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的作用是将tensor变换为参数shape形式，其中的shape为一个列表形式，特殊的是列表可以实现逆序的遍历，即list-1-1所代表的含义是我们不用亲自去指定这一维的大小，函数会自动进行计算，但是列表中只能存在一个-1。（如果存在多个-1，就是一个存在多解的方程-。-1-的应用-1-表示不知道该填什么数字合适的情况下，可以选择，由python通过a和其他的值3推测出来，比如，这里的a-是二维的数组，数组中共有6个元素，当使用reshape-时，6-3-2，所以形成的是3行2列的二维数组，可以看出，利用reshape进行数组形状的转换时，一定要满足（x-y）中x×y-数组的个数"><span class="nav-number">1.0.6.</span> <span class="nav-text">函数的作用是将tensor变换为参数shape形式，其中的shape为一个列表形式，特殊的是列表可以实现逆序的遍历，即list(-1).-1所代表的含义是我们不用亲自去指定这一维的大小，函数会自动进行计算，但是列表中只能存在一个-1。（如果存在多个-1，就是一个存在多解的方程)。-1 的应用:-1 表示不知道该填什么数字合适的情况下，可以选择，由python通过a和其他的值3推测出来，比如，这里的a 是二维的数组，数组中共有6个元素，当使用reshape()时，6/3=2，所以形成的是3行2列的二维数组，可以看出，利用reshape进行数组形状的转换时，一定要满足（x,y）中x×y=数组的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-tf-placeholder-dtype-shape-None-name-None-此函数可以理解为形参，用于定义过程，在执行的时候再赋具体的"><span class="nav-number">1.0.7.</span> <span class="nav-text">(3)tf.placeholder(dtype, shape=None, name=None)此函数可以理解为形参，用于定义过程，在执行的时候再赋具体的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-tf-nn-conv2d是TensorFlow里面实现卷积的函数"><span class="nav-number">1.0.8.</span> <span class="nav-text">(4)tf.nn.conv2d是TensorFlow里面实现卷积的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-max-pooling是CNN当中的最大值池化操作，其实用法和卷积很类似tf-nn-max-pool-value-ksize-strides-padding-name-None-参数是四个，和卷积很类似："><span class="nav-number">1.0.9.</span> <span class="nav-text">(5)max pooling是CNN当中的最大值池化操作，其实用法和卷积很类似tf.nn.max_pool(value, ksize, strides, padding, name=None)参数是四个，和卷积很类似：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-常用的激活函数tf-nn-relu-features-name-None-max-0-features"><span class="nav-number">1.0.10.</span> <span class="nav-text">(6)常用的激活函数tf.nn.relu(features, name=None)  = max(0,features)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一般features会是-卷积核-图像-的卷积后加上biastf-nn-relu-tf-nn-conv2d-x-image-w-conv1-strides-1-1-1-1-padding-39-SAME-39-b-conv1"><span class="nav-number">1.0.11.</span> <span class="nav-text">一般features会是(卷积核,图像)的卷积后加上biastf.nn.relu(tf.nn.conv2d(x_image, w_conv1, strides=[1, 1, 1, 1], padding=&#39;SAME&#39;) + b_conv1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-tf-nn-dropout-是tensorflow里面为了防止或减轻过拟合而使用的函数，它一般用在全连接层tf-nn-dropout-x-keep-prob-noise-shape-None-seed-None-name-None"><span class="nav-number">1.0.12.</span> <span class="nav-text">(7)tf.nn.dropout()是tensorflow里面为了防止或减轻过拟合而使用的函数，它一般用在全连接层tf.nn.dropout(x, keep_prob, noise_shape=None, seed=None,name=None)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-通过Softmax回归，将logistic的预测二分类的概率的问题推广到了n分类的概率的问题。tf-nn-softmax-logits-axis-None-name-None-dim-None-更新说明：dim被弃用，用axis代替"><span class="nav-number">1.0.13.</span> <span class="nav-text">(8)通过Softmax回归，将logistic的预测二分类的概率的问题推广到了n分类的概率的问题。tf.nn.softmax(logits,axis=None,name=None,dim=None)更新说明：dim被弃用，用axis代替</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dim-1时，在最后一个维度上进行softmax（默认）"><span class="nav-number">1.0.14.</span> <span class="nav-text">dim=-1时，在最后一个维度上进行softmax（默认）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dim-0时，在第一个维度上进行softmax"><span class="nav-number">1.0.15.</span> <span class="nav-text">dim=0时，在第一个维度上进行softmax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-调用reduce-sum-arg1-arg2-时，参数arg1即为要求和的数据，arg2有两个取值分别为0和1，通常用reduction-indices-0-或reduction-indices-1-来传递参数。从上图可以看出，当arg2-0时，是纵向对矩阵求和，原来矩阵有几列就得到几个值；相似地，当arg2-1时，是横向对矩阵求和；当省略arg2参数时，默认对矩阵所有元素进行求和。"><span class="nav-number">1.0.16.</span> <span class="nav-text">(9)调用reduce_sum(arg1, arg2)时，参数arg1即为要求和的数据，arg2有两个取值分别为0和1，通常用reduction_indices=[0]或reduction_indices=[1]来传递参数。从上图可以看出，当arg2 = 0时，是纵向对矩阵求和，原来矩阵有几列就得到几个值；相似地，当arg2 = 1时，是横向对矩阵求和；当省略arg2参数时，默认对矩阵所有元素进行求和。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看到这里，函数名的前缀为什么是reduce-其实也就很容易理解了，reduce就是“对矩阵降维”的含义，下划线后面的部分就是降维的方式，在reduce-sum-中就是按照求和的方式对矩阵降维。那么其他reduce前缀的函数也举一反三了，比如reduce-mean-就是按照某个维度求平均值，等等。"><span class="nav-number">1.0.17.</span> <span class="nav-text">看到这里，函数名的前缀为什么是reduce_其实也就很容易理解了，reduce就是“对矩阵降维”的含义，下划线后面的部分就是降维的方式，在reduce_sum()中就是按照求和的方式对矩阵降维。那么其他reduce前缀的函数也举一反三了，比如reduce_mean()就是按照某个维度求平均值，等等。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-经典损失函数：交叉熵"><span class="nav-number">1.0.18.</span> <span class="nav-text">(10)经典损失函数：交叉熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。那么，在神经网络中怎样把前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常有用的方法。（所以面试官会经常问你，为什么交叉熵经常要个softmax一起使用？）"><span class="nav-number">1.0.19.</span> <span class="nav-text">注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。那么，在神经网络中怎样把前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常有用的方法。（所以面试官会经常问你，为什么交叉熵经常要个softmax一起使用？）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因为交叉熵一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了同一封装，并提供了tf-nn-softmax-cross-entropy-with-logits函数。比如可以直接通过以下代码实现了sotfmax回归之后的交叉熵损失函数："><span class="nav-number">1.0.20.</span> <span class="nav-text">因为交叉熵一般会与softmax回归一起使用，所以TensorFlow对这两个功能进行了同一封装，并提供了tf.nn.softmax_cross_entropy_with_logits函数。比如可以直接通过以下代码实现了sotfmax回归之后的交叉熵损失函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这里y代表神经网络的原始输出（就是还没有经过sotfmax的输出），而y-是给出的标准答案。"><span class="nav-number">1.0.21.</span> <span class="nav-text">这里y代表神经网络的原始输出（就是还没有经过sotfmax的输出），而y_是给出的标准答案。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mywordwin</span>
+
+  
+</div>
+<span id="sitetime"></span>
+<script language="javascript">
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,03,08,15,00,00); 
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300,"bottom":-30},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>
