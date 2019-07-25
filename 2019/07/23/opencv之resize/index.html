@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="投影法字符分割,">
+  <meta name="keywords" content="opencv-resize,">
 
 
 
@@ -79,22 +79,21 @@
 
 
 
-<meta name="description" content="字符分割——投影法对于不黏连的字符，可以采用水平垂直投影法分割">
-<meta name="keywords" content="投影法字符分割">
+<meta name="description" content="我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。">
+<meta name="keywords" content="opencv-resize">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符分割——投影法">
-<meta property="og:url" content="http://mywordwin.cn/2019/07/06/字符分割——投影法/index.html">
+<meta property="og:title" content="opencv之resize">
+<meta property="og:url" content="http://mywordwin.cn/2019/07/23/opencv之resize/index.html">
 <meta property="og:site_name" content="On the way">
-<meta property="og:description" content="字符分割——投影法对于不黏连的字符，可以采用水平垂直投影法分割">
+<meta property="og:description" content="我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mywordwin.cn/2019/07/06/字符分割——投影法/2.jpg">
-<meta property="og:image" content="http://mywordwin.cn/2019/07/06/字符分割——投影法/3.jpg">
-<meta property="og:image" content="http://mywordwin.cn/2019/07/06/字符分割——投影法/1.jpg">
-<meta property="og:updated_time" content="2019-07-06T07:12:49.172Z">
+<meta property="og:image" content="http://mywordwin.cn/2019/07/23/opencv之resize/1.jpg">
+<meta property="og:image" content="http://mywordwin.cn/2019/07/23/opencv之resize/2.jpg">
+<meta property="og:updated_time" content="2019-07-23T04:29:23.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符分割——投影法">
-<meta name="twitter:description" content="字符分割——投影法对于不黏连的字符，可以采用水平垂直投影法分割">
-<meta name="twitter:image" content="http://mywordwin.cn/2019/07/06/字符分割——投影法/2.jpg">
+<meta name="twitter:title" content="opencv之resize">
+<meta name="twitter:description" content="我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。">
+<meta name="twitter:image" content="http://mywordwin.cn/2019/07/23/opencv之resize/1.jpg">
 
 
 
@@ -124,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://mywordwin.cn/2019/07/06/字符分割——投影法/">
+  <link rel="canonical" href="http://mywordwin.cn/2019/07/23/opencv之resize/">
 
 
 
 
 
-  <title>字符分割——投影法 | On the way</title>
+  <title>opencv之resize | On the way</title>
   
 
 
@@ -257,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/07/06/字符分割——投影法/">
+    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/07/23/opencv之resize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mywordwin">
@@ -274,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">字符分割——投影法</h1>
+          <h1 class="post-title" itemprop="name headline">opencv之resize</h1>
         
 
         <div class="post-meta">
@@ -286,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-06T13:50:13+08:00">
-                2019-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T09:50:01+08:00">
+                2019-07-23
               </time>
             
 
@@ -309,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图像处理/" itemprop="url" rel="index">
-                    <span itemprop="name">图像处理</span>
+                  <a href="/categories/opencv/" itemprop="url" rel="index">
+                    <span itemprop="name">opencv</span>
                   </a>
                 </span>
 
@@ -346,19 +345,22 @@
       
 
       
-        <h1 id="字符分割——投影法"><a href="#字符分割——投影法" class="headerlink" title="字符分割——投影法"></a>字符分割——投影法</h1><h2 id="对于不黏连的字符，可以采用水平垂直投影法分割"><a href="#对于不黏连的字符，可以采用水平垂直投影法分割" class="headerlink" title="对于不黏连的字符，可以采用水平垂直投影法分割"></a>对于不黏连的字符，可以采用水平垂直投影法分割</h2><a id="more"></a>
-<p>###<br>实现步骤：</p>
-<p>1、通过水平投影对图形进行水平分割，获取每一行的图像；</p>
-<p>2、通过垂直投影对分割的每一行图像进行垂直分割，最终确定每一个字符的坐标位置，分割出每一个字符；</p>
-<p> 　　先简单介绍一下投影法：分别在水平和垂直方向对预处理（二值化）的图像某一种像素进行统计，对于二值化图像非黑即白，我们通过对其中的白点或者黑点进行统计，根据统计结果就可以判断出每一行的上下边界以及每一列的左右边界，从而实现分割的目的</p>
-<p> <img src="/2019/07/06/字符分割——投影法/2.jpg" alt><br> <img src="/2019/07/06/字符分割——投影法/3.jpg" alt></p>
-<h2 id="像这样的就可以较为准确的分割，因为其垂直投影时，字与字之间的间隔白色像素点数为零，以此为依据分割"><a href="#像这样的就可以较为准确的分割，因为其垂直投影时，字与字之间的间隔白色像素点数为零，以此为依据分割" class="headerlink" title="像这样的就可以较为准确的分割，因为其垂直投影时，字与字之间的间隔白色像素点数为零，以此为依据分割"></a>像这样的就可以较为准确的分割，因为其垂直投影时，字与字之间的间隔白色像素点数为零，以此为依据分割</h2><p> 代码如下</p>
- <div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
-<p>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"> </span><br><span class="line">def getHProjection(image):</span><br><span class="line">    hProjection = np.zeros(image.shape,np.uint8)</span><br><span class="line">    #图像高与宽</span><br><span class="line">    (h,w)=image.shape</span><br><span class="line">    #长度与图像高度一致的数组</span><br><span class="line">    h_ = [0]*h</span><br><span class="line">    #循环统计每一行白色像素的个数</span><br><span class="line">    for y in range(h):</span><br><span class="line">        for x in range(w):</span><br><span class="line">            if image[y,x] == 255:</span><br><span class="line">                h_[y]+=1</span><br><span class="line">    #绘制水平投影图像</span><br><span class="line">    for y in range(h):</span><br><span class="line">        for x in range(h_[y]):</span><br><span class="line">            hProjection[y,x] = 255</span><br><span class="line">    cv2.imshow(&apos;hProjection2&apos;,hProjection)</span><br><span class="line">    return h_</span><br><span class="line"> </span><br><span class="line">def getVProjection(image):</span><br><span class="line">    vProjection = np.zeros(image.shape,np.uint8);</span><br><span class="line">    #图像高与宽</span><br><span class="line">    (h,w) = image.shape</span><br><span class="line">    #长度与图像宽度一致的数组</span><br><span class="line">    w_ = [0]*w</span><br><span class="line">    #循环统计每一列白色像素的个数</span><br><span class="line">    for x in range(w):</span><br><span class="line">        for y in range(h):</span><br><span class="line">            if image[y,x] == 255:</span><br><span class="line">                w_[x]+=1</span><br><span class="line">    #绘制垂直平投影图像</span><br><span class="line">    for x in range(w):</span><br><span class="line">        for y in range(h-w_[x],h):</span><br><span class="line">            vProjection[y,x] = 255</span><br><span class="line">    #cv2.imshow(&apos;vProjection&apos;,vProjection)</span><br><span class="line">    return w_</span><br><span class="line"> </span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    #读入原始图像</span><br><span class="line">    origineImage = cv2.imread(&apos;test.jpg&apos;)</span><br><span class="line">    # 图像灰度化   </span><br><span class="line">    #image = cv2.imread(&apos;test.jpg&apos;,0)</span><br><span class="line">    image = cv2.cvtColor(origineImage,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(&apos;gray&apos;,image)</span><br><span class="line">    # 将图片二值化</span><br><span class="line">    retval, img = cv2.threshold(image,127,255,cv2.THRESH_BINARY_INV)</span><br><span class="line">    cv2.imshow(&apos;binary&apos;,img)</span><br><span class="line">    #图像高与宽</span><br><span class="line">    (h,w)=img.shape</span><br><span class="line">    Position = []</span><br><span class="line">    #水平投影</span><br><span class="line">    H = getHProjection(img)</span><br><span class="line"></span><br><span class="line">    start = 0</span><br><span class="line">    H_Start = []</span><br><span class="line">    H_End = []</span><br><span class="line">    #根据水平投影获取垂直分割位置</span><br><span class="line">    for i in range(len(H)):</span><br><span class="line">        if H[i] &gt; 0 and start ==0:</span><br><span class="line">            H_Start.append(i)</span><br><span class="line">            start = 1</span><br><span class="line">        if H[i] &lt;= 0 and start == 1:</span><br><span class="line">            H_End.append(i)</span><br><span class="line">            start = 0</span><br><span class="line">    #分割行，分割之后再进行列分割并保存分割位置</span><br><span class="line">    for i in range(len(H_Start)):</span><br><span class="line">        #获取行图像</span><br><span class="line">        cropImg = img[H_Start[i]:H_End[i], 0:w]</span><br><span class="line">        #cv2.imshow(&apos;cropImg&apos;,cropImg)</span><br><span class="line">        #对行图像进行垂直投影</span><br><span class="line">        W = getVProjection(cropImg)</span><br><span class="line">        Wstart = 0</span><br><span class="line">        Wend = 0</span><br><span class="line">        W_Start = 0</span><br><span class="line">        W_End = 0</span><br><span class="line">        for j in range(len(W)):</span><br><span class="line">            if W[j] &gt; 0 and Wstart ==0:</span><br><span class="line">                W_Start =j</span><br><span class="line">                Wstart = 1</span><br><span class="line">                Wend=0</span><br><span class="line">            if W[j] &lt;= 0 and Wstart == 1:</span><br><span class="line">                W_End =j</span><br><span class="line">                Wstart = 0</span><br><span class="line">                Wend=1</span><br><span class="line">            if Wend == 1:</span><br><span class="line">                Position.append([W_Start,H_Start[i],W_End,H_End[i]])</span><br><span class="line">                Wend =0</span><br><span class="line">    #根据确定的位置分割字符</span><br><span class="line">    for m in range(len(Position)):</span><br><span class="line">        cv2.rectangle(origineImage, (Position[m][0],Position[m][1]), (Position[m][2],Position[m][3]), (0 ,229 ,238), 1)</span><br><span class="line">    cv2.imshow(&apos;image&apos;,origineImage)</span><br><span class="line">    cv2.waitKey(0)`</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
+        <h1 id="我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。"><a href="#我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。" class="headerlink" title="我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。"></a>我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。</h1><a id="more"></a>
+<p><code>void resize(InputArray src, OutputArray dst, Size dsize, double fx=0, double fy=0, int interpolation=INTER_LINEAR );</code></p>
+<p>参数介绍：src：输入，原图像，即待改变大小的图像；</p>
+<p>dst：输出，改变大小之后的图像，这个图像和原图像具有相同的内容，只是大小和原图像不一样而已；</p>
+<p>dsize：输出图像的大小。如果这个参数不为0，那么就代表将原图像缩放到这个Size(width，height)指定的大小；如果这个参数为0，那么原图像缩放之后的大小就要通过下面的公式来计算：</p>
+<p>dsize = Size(round(fx<em>src.cols), round(fy</em>src.rows))</p>
+<p>其中，fx和fy就是下面要说的两个参数，是图像width方向和height方向的缩放比例。</p>
+<p>fx：width方向的缩放比例，如果它是0，那么它就会按照(double)dsize.width/src.cols来计算；</p>
+<p>fy：height方向的缩放比例，如果它是0，那么它就会按照(double)dsize.height/src.rows来计算；</p>
+<p>interpolation：这个是指定插值的方式，图像缩放之后，肯定像素要进行重新计算的，就靠这个参数来指定重新计算像素的方式，有以下几种：</p>
+<blockquote>
+<p>INTER_NEAREST - 最邻近插值<br>INTER_LINEAR - 双线性插值，如果最后一个参数你不指定，默认使用这种方法<br>INTER_AREA - resampling using pixel area relation. It may be a preferred method for image decimation, as it gives moire’-free results. But when the image is zoomed, it is similar to the INTER_NEAREST method.<br>INTER_CUBIC - 4x4像素邻域内的双立方插值<br>INTER_LANCZOS4 - 8x8像素邻域内的Lanczos插值</p>
+</blockquote>
+<h3 id="直接上代码-批量处理"><a href="#直接上代码-批量处理" class="headerlink" title="直接上代码 批量处理"></a>直接上代码 批量处理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">picpath = &apos;./Parting/&apos;</span><br><span class="line"></span><br><span class="line">for root, dirs, files in os.walk(picpath):</span><br><span class="line">    i=10</span><br><span class="line">    for file in files:</span><br><span class="line">        i+=1</span><br><span class="line">        picpp = root + file</span><br><span class="line">        image = cv2.imread(picpp)</span><br><span class="line">        image = cv2.resize(image, (20,20), interpolation=cv2.INTER_NEAREST)</span><br><span class="line">        # cv2.imshow(&quot;2&quot;,image)</span><br><span class="line">        # cv2.waitKey(0)</span><br><span class="line">        # cv2.destroyAllWindows()</span><br><span class="line">        savepath =picpath+&apos;%d.jpg&apos; % i</span><br><span class="line">        cv2.imwrite(savepath,image)</span><br></pre></td></tr></table></figure>
+<h3 id="处理结果如下"><a href="#处理结果如下" class="headerlink" title="处理结果如下"></a>处理结果如下</h3><p><img src="/2019/07/23/opencv之resize/1.jpg" alt><br><img src="/2019/07/23/opencv之resize/2.jpg" alt></p>
 
-</div></div>
-<p> <img src="/2019/07/06/字符分割——投影法/1.jpg" alt></p>
-<h2 id="车牌识别过程中这个黏连字符分割由于字符间的存在干扰因素，所以不弄通过找黑色像素值为0的点为分割点"><a href="#车牌识别过程中这个黏连字符分割由于字符间的存在干扰因素，所以不弄通过找黑色像素值为0的点为分割点" class="headerlink" title="车牌识别过程中这个黏连字符分割由于字符间的存在干扰因素，所以不弄通过找黑色像素值为0的点为分割点"></a>车牌识别过程中这个黏连字符分割由于字符间的存在干扰因素，所以不弄通过找黑色像素值为0的点为分割点</h2>
       
     </div>
     
@@ -378,7 +380,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://mywordwin.cn/2019/07/06/字符分割——投影法/" title="字符分割——投影法">http://mywordwin.cn/2019/07/06/字符分割——投影法/</a>
+    <a href="http://mywordwin.cn/2019/07/23/opencv之resize/" title="opencv之resize">http://mywordwin.cn/2019/07/23/opencv之resize/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -393,7 +395,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/投影法字符分割/" rel="tag"># 投影法字符分割</a>
+            <a href="/tags/opencv-resize/" rel="tag"># opencv-resize</a>
           
         </div>
       
@@ -406,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/12/opencv图像处理基本函数/" rel="next" title="opencv图像处理基本函数">
-                <i class="fa fa-chevron-left"></i> opencv图像处理基本函数
+              <a href="/2019/07/19/TenSorFlow-对生成模型的恢复及使用/" rel="next" title="TenSorFlow-对生成模型的恢复及使用">
+                <i class="fa fa-chevron-left"></i> TenSorFlow-对生成模型的恢复及使用
               </a>
             
           </div>
@@ -415,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/10/python-opencv-cnn车牌识别/" rel="prev" title="python+opencv+cnn车牌识别">
-                python+opencv+cnn车牌识别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符分割——投影法"><span class="nav-number">1.</span> <span class="nav-text">字符分割——投影法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对于不黏连的字符，可以采用水平垂直投影法分割"><span class="nav-number">1.1.</span> <span class="nav-text">对于不黏连的字符，可以采用水平垂直投影法分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#像这样的就可以较为准确的分割，因为其垂直投影时，字与字之间的间隔白色像素点数为零，以此为依据分割"><span class="nav-number">1.2.</span> <span class="nav-text">像这样的就可以较为准确的分割，因为其垂直投影时，字与字之间的间隔白色像素点数为零，以此为依据分割</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#车牌识别过程中这个黏连字符分割由于字符间的存在干扰因素，所以不弄通过找黑色像素值为0的点为分割点"><span class="nav-number">1.3.</span> <span class="nav-text">车牌识别过程中这个黏连字符分割由于字符间的存在干扰因素，所以不弄通过找黑色像素值为0的点为分割点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。"><span class="nav-number">1.</span> <span class="nav-text">我在用tensorflow训练模型的时候，发现一个问题，由于训练的图片分辨率是固定的，但是我把训练好的模型拿来使用的时候，往往需要用来分类的图片分辨率不是我训练的分辨率。所以这个时候需要使用pnencv的resize来把图片重新缩放成模型的分辨率。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接上代码-批量处理"><span class="nav-number">1.0.1.</span> <span class="nav-text">直接上代码 批量处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理结果如下"><span class="nav-number">1.0.2.</span> <span class="nav-text">处理结果如下</span></a></li></ol></li></ol></div>
             
 
           </div>
