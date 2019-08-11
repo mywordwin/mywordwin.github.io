@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="TensorFlow模型恢复,">
+  <meta name="keywords" content="TensorFlow,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="为方便以后使用，生成了模型，如何恢复及使用">
-<meta name="keywords" content="TensorFlow模型恢复">
+<meta name="description" content="tf.Variable() 和tf.get_variable()的区别以及tf.variable_scope的使用">
+<meta name="keywords" content="TensorFlow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TenSorFlow-对生成模型的恢复及使用">
-<meta property="og:url" content="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/index.html">
+<meta property="og:title" content="tf.Variable() 和tf.get_variable()">
+<meta property="og:url" content="http://mywordwin.cn/2019/08/11/tf-Variable-和tf-get-variable/index.html">
 <meta property="og:site_name" content="On the way">
-<meta property="og:description" content="为方便以后使用，生成了模型，如何恢复及使用">
+<meta property="og:description" content="tf.Variable() 和tf.get_variable()的区别以及tf.variable_scope的使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/1.jpg">
-<meta property="og:updated_time" content="2019-07-25T12:04:45.575Z">
+<meta property="og:updated_time" content="2019-08-11T09:55:45.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TenSorFlow-对生成模型的恢复及使用">
-<meta name="twitter:description" content="为方便以后使用，生成了模型，如何恢复及使用">
-<meta name="twitter:image" content="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/1.jpg">
+<meta name="twitter:title" content="tf.Variable() 和tf.get_variable()">
+<meta name="twitter:description" content="tf.Variable() 和tf.get_variable()的区别以及tf.variable_scope的使用">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/">
+  <link rel="canonical" href="http://mywordwin.cn/2019/08/11/tf-Variable-和tf-get-variable/">
 
 
 
 
 
-  <title>TenSorFlow-对生成模型的恢复及使用 | On the way</title>
+  <title>tf.Variable() 和tf.get_variable() | On the way</title>
   
 
 
@@ -255,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/">
+    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/08/11/tf-Variable-和tf-get-variable/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mywordwin">
@@ -272,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TenSorFlow-对生成模型的恢复及使用</h1>
+          <h1 class="post-title" itemprop="name headline">tf.Variable() 和tf.get_variable()</h1>
         
 
         <div class="post-meta">
@@ -284,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T19:52:24+08:00">
-                2019-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T17:46:26+08:00">
+                2019-08-11
               </time>
             
 
@@ -344,10 +342,12 @@
       
 
       
-        <h1 id="为方便以后使用，生成了模型，如何恢复及使用"><a href="#为方便以后使用，生成了模型，如何恢复及使用" class="headerlink" title="为方便以后使用，生成了模型，如何恢复及使用"></a>为方便以后使用，生成了模型，如何恢复及使用</h1><a id="more"></a>
-<h3 id="通过保存模型，得到四个模型文件"><a href="#通过保存模型，得到四个模型文件" class="headerlink" title="通过保存模型，得到四个模型文件"></a>通过保存模型，得到四个模型文件<img src="/2019/07/19/TenSorFlow-对生成模型的恢复及使用/1.jpg" alt></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">meta文件保存了当前图结构</span><br><span class="line"></span><br><span class="line">data文件保存了当前参数名和值</span><br><span class="line"></span><br><span class="line">index文件保存了辅助索引信息</span><br><span class="line"></span><br><span class="line">checkpoint文件会记录保存信息，通过它可以定位最新保存的模型</span><br></pre></td></tr></table></figure>
-<h3 id="tf-train-import-meta-graphimport-meta-grap-meta-graph-or-file-clear-devices-False-import-scope-None-kwargs"><a href="#tf-train-import-meta-graphimport-meta-grap-meta-graph-or-file-clear-devices-False-import-scope-None-kwargs" class="headerlink" title="tf.train.import_meta_graphimport_meta_grap(meta_graph_or_file,clear_devices=False,import_scope=None,**kwargs)"></a><code>tf.train.import_meta_graphimport_meta_grap(meta_graph_or_file,clear_devices=False,import_scope=None,**kwargs)</code></h3><p>这个方法可以从文件中将保存的graph的所有节点加载到当前的default graph中，并返回一个saver。也就是说，我们在保存的时候，除了将变量的值保存下来，其实还有将对应graph中的各种节点保存下来，所以模型的结构也同样被保存下来了。</p>
-<h3 id="如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf-train-latest-checkpoint-checkpoint-dir-这个方法获取"><a href="#如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf-train-latest-checkpoint-checkpoint-dir-这个方法获取" class="headerlink" title="如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取"></a>如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">天坑aaaa：代码需要运用已经训练好的模型，进行一些数据的计算，并给出计算结果，但是代码在运行的时候发现，同样一组数据，每次运行代码后，获得的从之前训练好的模型中得到的输出，每次运行结果都不同</span><br><span class="line">（1）测试中，要将网络中使用的tf.nn.dropout的keep_prob为1</span><br><span class="line">（2）在load checkpoint的代码完成之后，代码中运行了下列代码sess.run(tf.global_variables_initializer())这样导致，载入的checkpoint的数据失效，所有数据重新进行了初始化，导致模型是个随机的取值，从而每次运行获得的结果不同。</span><br><span class="line">解决的办法也很简单，在load checkpoint的操作之前，先运行初始化的代码，然后再导入checkpoint.</span><br></pre></td></tr></table></figure>
+        <h1 id="tf-Variable-和tf-get-variable-的区别以及tf-variable-scope的使用"><a href="#tf-Variable-和tf-get-variable-的区别以及tf-variable-scope的使用" class="headerlink" title="tf.Variable() 和tf.get_variable()的区别以及tf.variable_scope的使用"></a>tf.Variable() 和tf.get_variable()的区别以及tf.variable_scope的使用</h1><a id="more"></a>
+<h3 id="在tensorflow中提供了tf-get-variable函数来创建或者获取变量。当tf-get-variable用于创建变量时，则与tf-Variable的功能基本相同。"><a href="#在tensorflow中提供了tf-get-variable函数来创建或者获取变量。当tf-get-variable用于创建变量时，则与tf-Variable的功能基本相同。" class="headerlink" title="在tensorflow中提供了tf.get_variable函数来创建或者获取变量。当tf.get_variable用于创建变量时，则与tf.Variable的功能基本相同。"></a>在tensorflow中提供了tf.get_variable函数来创建或者获取变量。当tf.get_variable用于创建变量时，则与tf.Variable的功能基本相同。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#定义的基本等价</span><br><span class="line">v = tf.get_variable(&quot;v&quot;,shape=[1],initializer.constant_initializer(1.0))</span><br><span class="line">v = tf.Variable(tf.constant(1.0,shape=[1]),name=&quot;v&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="不同点：1-使用tf-Variable时，如果检测到命名冲突，系统会自己处理。使用tf-get-variable-时，系统不会处理冲突，而会报错-2-两函数指定变量名称的参数不同，对于tf-Variable函数，变量名称是一个可选的参数，通过name-”v”的形式给出-而tf-get-variable函数，变量名称是一个必填的参数，它会根据变量名称去创建或者获取变量"><a href="#不同点：1-使用tf-Variable时，如果检测到命名冲突，系统会自己处理。使用tf-get-variable-时，系统不会处理冲突，而会报错-2-两函数指定变量名称的参数不同，对于tf-Variable函数，变量名称是一个可选的参数，通过name-”v”的形式给出-而tf-get-variable函数，变量名称是一个必填的参数，它会根据变量名称去创建或者获取变量" class="headerlink" title="不同点：1.使用tf.Variable时，如果检测到命名冲突，系统会自己处理。使用tf.get_variable()时，系统不会处理冲突，而会报错   2.两函数指定变量名称的参数不同，对于tf.Variable函数，变量名称是一个可选的参数，通过name=”v”的形式给出,而tf.get_variable函数，变量名称是一个必填的参数，它会根据变量名称去创建或者获取变量"></a>不同点：1.使用tf.Variable时，如果检测到命名冲突，系统会自己处理。使用tf.get_variable()时，系统不会处理冲突，而会报错   2.两函数指定变量名称的参数不同，对于tf.Variable函数，变量名称是一个可选的参数，通过name=”v”的形式给出,而tf.get_variable函数，变量名称是一个必填的参数，它会根据变量名称去创建或者获取变量</h3><h3 id="先通过tf-variable-scope生成一个上下文管理器，并指明需求的变量在这个上下文管理器中，就可以直接通过tf-get-variable获取已经生成的变量。"><a href="#先通过tf-variable-scope生成一个上下文管理器，并指明需求的变量在这个上下文管理器中，就可以直接通过tf-get-variable获取已经生成的变量。" class="headerlink" title="先通过tf.variable_scope生成一个上下文管理器，并指明需求的变量在这个上下文管理器中，就可以直接通过tf.get_variable获取已经生成的变量。"></a>先通过tf.variable_scope生成一个上下文管理器，并指明需求的变量在这个上下文管理器中，就可以直接通过tf.get_variable获取已经生成的变量。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#通过tf.variable_scope函数控制tf.get_variable函数来获取以及创建过的变量</span><br><span class="line">with tf.variable_scope(&quot;zyy&quot;):#zyy的命名空间</span><br><span class="line">        v=tf.get_variable(&quot;v&quot;,[1],initializer=tf.constant_initializer(1.0))  #在zyy的命名空间内创建名字为v的变量</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with tf.variable_scope(&quot;zyy&quot;):</span><br><span class="line">         v=tf.get_variable(&quot;v&quot;,[1])  #通过tf.get_variable函数创建v的变量，则会失败，由于在zyy空间中已经生成了一个v的变量</span><br></pre></td></tr></table></figure>
+<h3 id="在上下文管理器中已经生成一个v的变量，若想通过tf-get-variable函数获取其变量，则可以通过reuse参数的设定为True来获取（可以将reuse按照字面意思理解，重用）"><a href="#在上下文管理器中已经生成一个v的变量，若想通过tf-get-variable函数获取其变量，则可以通过reuse参数的设定为True来获取（可以将reuse按照字面意思理解，重用）" class="headerlink" title="在上下文管理器中已经生成一个v的变量，若想通过tf.get_variable函数获取其变量，则可以通过reuse参数的设定为True来获取（可以将reuse按照字面意思理解，重用）"></a>在上下文管理器中已经生成一个v的变量，若想通过tf.get_variable函数获取其变量，则可以通过reuse参数的设定为True来获取（可以将reuse按照字面意思理解，重用）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with tf.variable_scope(&quot;zyy&quot;,reuse=True):</span><br><span class="line">      v1=tf.get_variable(&quot;v&quot;,[1])</span><br><span class="line">print v==v1   #输出为True</span><br></pre></td></tr></table></figure>
+<h3 id="并且tf-variable-scope只能获取已经创建过的变量。"><a href="#并且tf-variable-scope只能获取已经创建过的变量。" class="headerlink" title="并且tf.variable_scope只能获取已经创建过的变量。"></a>并且tf.variable_scope只能获取已经创建过的变量。</h3><h3 id="如果tf-variable-scope函数使用参数reuse-None或者reuse-False创建上下文管理器，则tf-get-variable函数可以创建新的变量。但不可以创建已经存在的变量即为同名的变量。"><a href="#如果tf-variable-scope函数使用参数reuse-None或者reuse-False创建上下文管理器，则tf-get-variable函数可以创建新的变量。但不可以创建已经存在的变量即为同名的变量。" class="headerlink" title="如果tf.variable_scope函数使用参数reuse=None或者reuse=False创建上下文管理器，则tf.get_variable函数可以创建新的变量。但不可以创建已经存在的变量即为同名的变量。"></a>如果tf.variable_scope函数使用参数reuse=None或者reuse=False创建上下文管理器，则tf.get_variable函数可以创建新的变量。但不可以创建已经存在的变量即为同名的变量。</h3>
       
     </div>
     
@@ -367,7 +367,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/" title="TenSorFlow-对生成模型的恢复及使用">http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/</a>
+    <a href="http://mywordwin.cn/2019/08/11/tf-Variable-和tf-get-variable/" title="tf.Variable() 和tf.get_variable()">http://mywordwin.cn/2019/08/11/tf-Variable-和tf-get-variable/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -382,7 +382,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TensorFlow模型恢复/" rel="tag"># TensorFlow模型恢复</a>
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
           
         </div>
       
@@ -395,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/13/tensorflow基础/" rel="next" title="TensorFlow基础">
-                <i class="fa fa-chevron-left"></i> TensorFlow基础
+              <a href="/2019/07/23/opencv之resize/" rel="next" title="opencv之resize">
+                <i class="fa fa-chevron-left"></i> opencv之resize
               </a>
             
           </div>
@@ -404,10 +404,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/23/opencv之resize/" rel="prev" title="opencv之resize">
-                opencv之resize <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为方便以后使用，生成了模型，如何恢复及使用"><span class="nav-number">1.</span> <span class="nav-text">为方便以后使用，生成了模型，如何恢复及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过保存模型，得到四个模型文件"><span class="nav-number">1.0.1.</span> <span class="nav-text">通过保存模型，得到四个模型文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-train-import-meta-graphimport-meta-grap-meta-graph-or-file-clear-devices-False-import-scope-None-kwargs"><span class="nav-number">1.0.2.</span> <span class="nav-text">tf.train.import_meta_graphimport_meta_grap(meta_graph_or_file,clear_devices=False,import_scope=None,**kwargs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf-train-latest-checkpoint-checkpoint-dir-这个方法获取"><span class="nav-number">1.0.3.</span> <span class="nav-text">如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tf-Variable-和tf-get-variable-的区别以及tf-variable-scope的使用"><span class="nav-number">1.</span> <span class="nav-text">tf.Variable() 和tf.get_variable()的区别以及tf.variable_scope的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在tensorflow中提供了tf-get-variable函数来创建或者获取变量。当tf-get-variable用于创建变量时，则与tf-Variable的功能基本相同。"><span class="nav-number">1.0.1.</span> <span class="nav-text">在tensorflow中提供了tf.get_variable函数来创建或者获取变量。当tf.get_variable用于创建变量时，则与tf.Variable的功能基本相同。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同点：1-使用tf-Variable时，如果检测到命名冲突，系统会自己处理。使用tf-get-variable-时，系统不会处理冲突，而会报错-2-两函数指定变量名称的参数不同，对于tf-Variable函数，变量名称是一个可选的参数，通过name-”v”的形式给出-而tf-get-variable函数，变量名称是一个必填的参数，它会根据变量名称去创建或者获取变量"><span class="nav-number">1.0.2.</span> <span class="nav-text">不同点：1.使用tf.Variable时，如果检测到命名冲突，系统会自己处理。使用tf.get_variable()时，系统不会处理冲突，而会报错   2.两函数指定变量名称的参数不同，对于tf.Variable函数，变量名称是一个可选的参数，通过name=”v”的形式给出,而tf.get_variable函数，变量名称是一个必填的参数，它会根据变量名称去创建或者获取变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#先通过tf-variable-scope生成一个上下文管理器，并指明需求的变量在这个上下文管理器中，就可以直接通过tf-get-variable获取已经生成的变量。"><span class="nav-number">1.0.3.</span> <span class="nav-text">先通过tf.variable_scope生成一个上下文管理器，并指明需求的变量在这个上下文管理器中，就可以直接通过tf.get_variable获取已经生成的变量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在上下文管理器中已经生成一个v的变量，若想通过tf-get-variable函数获取其变量，则可以通过reuse参数的设定为True来获取（可以将reuse按照字面意思理解，重用）"><span class="nav-number">1.0.4.</span> <span class="nav-text">在上下文管理器中已经生成一个v的变量，若想通过tf.get_variable函数获取其变量，则可以通过reuse参数的设定为True来获取（可以将reuse按照字面意思理解，重用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并且tf-variable-scope只能获取已经创建过的变量。"><span class="nav-number">1.0.5.</span> <span class="nav-text">并且tf.variable_scope只能获取已经创建过的变量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果tf-variable-scope函数使用参数reuse-None或者reuse-False创建上下文管理器，则tf-get-variable函数可以创建新的变量。但不可以创建已经存在的变量即为同名的变量。"><span class="nav-number">1.0.6.</span> <span class="nav-text">如果tf.variable_scope函数使用参数reuse=None或者reuse=False创建上下文管理器，则tf.get_variable函数可以创建新的变量。但不可以创建已经存在的变量即为同名的变量。</span></a></li></ol></li></ol></div>
             
 
           </div>
