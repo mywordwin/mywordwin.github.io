@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="TensorFlow模型恢复,">
+  <meta name="keywords" content="TensorFlow,">
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="为方便以后使用，生成了模型，如何恢复及使用">
-<meta name="keywords" content="TensorFlow模型恢复">
+<meta name="description" content="Cross-Entropy cost function交叉熵损失函数">
+<meta name="keywords" content="TensorFlow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TenSorFlow-对生成模型的恢复及使用">
-<meta property="og:url" content="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/index.html">
+<meta property="og:title" content="损失函数">
+<meta property="og:url" content="http://mywordwin.cn/2019/08/13/损失函数/index.html">
 <meta property="og:site_name" content="On the way">
-<meta property="og:description" content="为方便以后使用，生成了模型，如何恢复及使用">
+<meta property="og:description" content="Cross-Entropy cost function交叉熵损失函数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/1.jpg">
-<meta property="og:updated_time" content="2019-07-25T12:04:45.575Z">
+<meta property="og:image" content="http://mywordwin.cn/2019/08/13/损失函数/1.jpg">
+<meta property="og:updated_time" content="2019-08-13T07:38:28.045Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TenSorFlow-对生成模型的恢复及使用">
-<meta name="twitter:description" content="为方便以后使用，生成了模型，如何恢复及使用">
-<meta name="twitter:image" content="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/1.jpg">
+<meta name="twitter:title" content="损失函数">
+<meta name="twitter:description" content="Cross-Entropy cost function交叉熵损失函数">
+<meta name="twitter:image" content="http://mywordwin.cn/2019/08/13/损失函数/1.jpg">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/">
+  <link rel="canonical" href="http://mywordwin.cn/2019/08/13/损失函数/">
 
 
 
 
 
-  <title>TenSorFlow-对生成模型的恢复及使用 | On the way</title>
+  <title>损失函数 | On the way</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/">
+    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/08/13/损失函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mywordwin">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TenSorFlow-对生成模型的恢复及使用</h1>
+          <h1 class="post-title" itemprop="name headline">损失函数</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T19:52:24+08:00">
-                2019-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T15:25:26+08:00">
+                2019-08-13
               </time>
             
 
@@ -344,10 +344,11 @@
       
 
       
-        <h1 id="为方便以后使用，生成了模型，如何恢复及使用"><a href="#为方便以后使用，生成了模型，如何恢复及使用" class="headerlink" title="为方便以后使用，生成了模型，如何恢复及使用"></a>为方便以后使用，生成了模型，如何恢复及使用</h1><a id="more"></a>
-<h3 id="通过保存模型，得到四个模型文件"><a href="#通过保存模型，得到四个模型文件" class="headerlink" title="通过保存模型，得到四个模型文件"></a>通过保存模型，得到四个模型文件<img src="/2019/07/19/TenSorFlow-对生成模型的恢复及使用/1.jpg" alt></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">meta文件保存了当前图结构</span><br><span class="line"></span><br><span class="line">data文件保存了当前参数名和值</span><br><span class="line"></span><br><span class="line">index文件保存了辅助索引信息</span><br><span class="line"></span><br><span class="line">checkpoint文件会记录保存信息，通过它可以定位最新保存的模型</span><br></pre></td></tr></table></figure>
-<h3 id="tf-train-import-meta-graphimport-meta-grap-meta-graph-or-file-clear-devices-False-import-scope-None-kwargs"><a href="#tf-train-import-meta-graphimport-meta-grap-meta-graph-or-file-clear-devices-False-import-scope-None-kwargs" class="headerlink" title="tf.train.import_meta_graphimport_meta_grap(meta_graph_or_file,clear_devices=False,import_scope=None,**kwargs)"></a><code>tf.train.import_meta_graphimport_meta_grap(meta_graph_or_file,clear_devices=False,import_scope=None,**kwargs)</code></h3><p>这个方法可以从文件中将保存的graph的所有节点加载到当前的default graph中，并返回一个saver。也就是说，我们在保存的时候，除了将变量的值保存下来，其实还有将对应graph中的各种节点保存下来，所以模型的结构也同样被保存下来了。</p>
-<h3 id="如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf-train-latest-checkpoint-checkpoint-dir-这个方法获取"><a href="#如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf-train-latest-checkpoint-checkpoint-dir-这个方法获取" class="headerlink" title="如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取"></a>如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">天坑aaaa：代码需要运用已经训练好的模型，进行一些数据的计算，并给出计算结果，但是代码在运行的时候发现，同样一组数据，每次运行代码后，获得的从之前训练好的模型中得到的输出，每次运行结果都不同</span><br><span class="line">（1）测试中，要将网络中使用的tf.nn.dropout的keep_prob为1</span><br><span class="line">（2）在load checkpoint的代码完成之后，代码中运行了下列代码sess.run(tf.global_variables_initializer())这样导致，载入的checkpoint的数据失效，所有数据重新进行了初始化，导致模型是个随机的取值，从而每次运行获得的结果不同。</span><br><span class="line">解决的办法也很简单，在load checkpoint的操作之前，先运行初始化的代码，然后再导入checkpoint.</span><br></pre></td></tr></table></figure>
+        <h1 id="Cross-Entropy-cost-function交叉熵损失函数"><a href="#Cross-Entropy-cost-function交叉熵损失函数" class="headerlink" title="Cross-Entropy cost function交叉熵损失函数"></a>Cross-Entropy cost function交叉熵损失函数</h1><a id="more"></a>
+<p><img src="/2019/08/13/损失函数/1.jpg" alt></p>
+<h3 id="这种典型的cost函数在tensorflo里面代码如下：把向量化后的图片-x-和权重矩阵-W-相乘，加上偏置-b-，然后计算每个分类的softmax概率值。"><a href="#这种典型的cost函数在tensorflo里面代码如下：把向量化后的图片-x-和权重矩阵-W-相乘，加上偏置-b-，然后计算每个分类的softmax概率值。" class="headerlink" title="这种典型的cost函数在tensorflo里面代码如下：把向量化后的图片 x 和权重矩阵 W 相乘，加上偏置 b ，然后计算每个分类的softmax概率值。"></a>这种典型的cost函数在tensorflo里面代码如下：把向量化后的图片 x 和权重矩阵 W 相乘，加上偏置 b ，然后计算每个分类的softmax概率值。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = tf.nn.softmax(tf.matmul(x,W) + b)</span><br><span class="line">cross_entropy = -tf.reduce_sum(y_*tf.log(y))</span><br></pre></td></tr></table></figure>
+<h3 id="注意，-tf-reduce-sum-把minibatch里的每张图片的交叉熵值都加起来了。我们计算的交叉熵是指整个minibatch的。"><a href="#注意，-tf-reduce-sum-把minibatch里的每张图片的交叉熵值都加起来了。我们计算的交叉熵是指整个minibatch的。" class="headerlink" title="注意， tf.reduce_sum 把minibatch里的每张图片的交叉熵值都加起来了。我们计算的交叉熵是指整个minibatch的。"></a>注意， tf.reduce_sum 把minibatch里的每张图片的交叉熵值都加起来了。我们计算的交叉熵是指整个minibatch的。</h3><h3 id="但是上文的网络的output先经过了softmax操作，tensorflow的默认计算cost函数tf-nn-softmax-cross-entropy-with-logits是不需要在输入前对网络的output进行softmax的："><a href="#但是上文的网络的output先经过了softmax操作，tensorflow的默认计算cost函数tf-nn-softmax-cross-entropy-with-logits是不需要在输入前对网络的output进行softmax的：" class="headerlink" title="但是上文的网络的output先经过了softmax操作，tensorflow的默认计算cost函数tf.nn.softmax_cross_entropy_with_logits是不需要在输入前对网络的output进行softmax的："></a>但是上文的网络的output先经过了softmax操作，tensorflow的默认计算cost函数tf.nn.softmax_cross_entropy_with_logits是不需要在输入前对网络的output进行softmax的：</h3><p>因此用默认函数计算cost函数方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits,</span><br><span class="line">                                                        onehot_labels,</span><br><span class="line">                                                        name=&apos;xentropy&apos;)</span><br><span class="line">loss = tf.reduce_mean(cross_entropy, name=&apos;xentropy_mean&apos;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="注意这里的onehot-labels需要对样本类别标签进行onthot编码，onehot编码是机器学习中常用的工具，假如当前训练样本共5个类，当前label为3，onthot后为00100，类别5编码后是00001-对应代码是onehot-labelstf-one-hot-y-n-classes"><a href="#注意这里的onehot-labels需要对样本类别标签进行onthot编码，onehot编码是机器学习中常用的工具，假如当前训练样本共5个类，当前label为3，onthot后为00100，类别5编码后是00001-对应代码是onehot-labelstf-one-hot-y-n-classes" class="headerlink" title="注意这里的onehot_labels需要对样本类别标签进行onthot编码，onehot编码是机器学习中常用的工具，假如当前训练样本共5个类，当前label为3，onthot后为00100，类别5编码后是00001 对应代码是onehot_labelstf.one_hot(y,n_classes)"></a>注意这里的onehot_labels需要对样本类别标签进行onthot编码，onehot编码是机器学习中常用的工具，假如当前训练样本共5个类，当前label为3，onthot后为00100，类别5编码后是00001 对应代码是onehot_labelstf.one_hot(y,n_classes)</h3><h2 id="谈一下对损失函数计算的理解"><a href="#谈一下对损失函数计算的理解" class="headerlink" title="谈一下对损失函数计算的理解"></a>谈一下对损失函数计算的理解</h2><h3 id="假如batchsize-8"><a href="#假如batchsize-8" class="headerlink" title="假如batchsize=8"></a>假如batchsize=8</h3><h3 id="训练样本总类别为5"><a href="#训练样本总类别为5" class="headerlink" title="训练样本总类别为5"></a>训练样本总类别为5</h3><h3 id="那么一个batchsize的数据经过神经网络最后的输出为-8，5"><a href="#那么一个batchsize的数据经过神经网络最后的输出为-8，5" class="headerlink" title="那么一个batchsize的数据经过神经网络最后的输出为[8，5]"></a>那么一个batchsize的数据经过神经网络最后的输出为[8，5]</h3><h3 id="对其进行softmax操作之后每一行5个元素的含义就是属于五个类别的概率，假如当前某一个正确标签为2的softmax输出为-0-1-0-5，0-01，0-3，0-09-那么它的cost为-log-0-1-0-5，0-01，0-3，0-09-0-1-0-0-0-T-0-1-0-0-0-T是一个列向量，cost-log-0-5-0-3，我们的目的是使得cost最小，由于-log-1-0是最小值，因此我们就是不断让该样本的分数向着自己正确类别对应的概率靠近。-对于同一个batch内部不用的样本，分别像上面一样计算然后求mean或者sum最后cost的值，然后最小化cost即可！"><a href="#对其进行softmax操作之后每一行5个元素的含义就是属于五个类别的概率，假如当前某一个正确标签为2的softmax输出为-0-1-0-5，0-01，0-3，0-09-那么它的cost为-log-0-1-0-5，0-01，0-3，0-09-0-1-0-0-0-T-0-1-0-0-0-T是一个列向量，cost-log-0-5-0-3，我们的目的是使得cost最小，由于-log-1-0是最小值，因此我们就是不断让该样本的分数向着自己正确类别对应的概率靠近。-对于同一个batch内部不用的样本，分别像上面一样计算然后求mean或者sum最后cost的值，然后最小化cost即可！" class="headerlink" title="对其进行softmax操作之后每一行5个元素的含义就是属于五个类别的概率，假如当前某一个正确标签为2的softmax输出为[0.1,0.5，0.01，0.3，0..09] 那么它的cost为-log([0.1,0.5，0.01，0.3，0..09])*[0,1,0,0,0]T ,[0,1,0,0,0]T是一个列向量，cost=-log(0.5)=0.3，我们的目的是使得cost最小，由于-log(1)=0是最小值，因此我们就是不断让该样本的分数向着自己正确类别对应的概率靠近。 对于同一个batch内部不用的样本，分别像上面一样计算然后求mean或者sum最后cost的值，然后最小化cost即可！"></a>对其进行softmax操作之后每一行5个元素的含义就是属于五个类别的概率，假如当前某一个正确标签为2的softmax输出为[0.1,0.5，0.01，0.3，0..09] 那么它的cost为-log([0.1,0.5，0.01，0.3，0..09])*[0,1,0,0,0]T ,[0,1,0,0,0]T是一个列向量，cost=-log(0.5)=0.3，我们的目的是使得cost最小，由于-log(1)=0是最小值，因此我们就是不断让该样本的分数向着自己正确类别对应的概率靠近。 对于同一个batch内部不用的样本，分别像上面一样计算然后求mean或者sum最后cost的值，然后最小化cost即可！</h3>
       
     </div>
     
@@ -367,7 +368,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/" title="TenSorFlow-对生成模型的恢复及使用">http://mywordwin.cn/2019/07/19/TenSorFlow-对生成模型的恢复及使用/</a>
+    <a href="http://mywordwin.cn/2019/08/13/损失函数/" title="损失函数">http://mywordwin.cn/2019/08/13/损失函数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -382,7 +383,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TensorFlow模型恢复/" rel="tag"># TensorFlow模型恢复</a>
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
           
         </div>
       
@@ -395,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/13/tensorflow基础/" rel="next" title="TensorFlow基础">
-                <i class="fa fa-chevron-left"></i> TensorFlow基础
+              <a href="/2019/08/11/tf-Variable-和tf-get-variable/" rel="next" title="tf.Variable() 和tf.get_variable()">
+                <i class="fa fa-chevron-left"></i> tf.Variable() 和tf.get_variable()
               </a>
             
           </div>
@@ -404,10 +405,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/23/opencv之resize/" rel="prev" title="opencv之resize">
-                opencv之resize <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为方便以后使用，生成了模型，如何恢复及使用"><span class="nav-number">1.</span> <span class="nav-text">为方便以后使用，生成了模型，如何恢复及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过保存模型，得到四个模型文件"><span class="nav-number">1.0.1.</span> <span class="nav-text">通过保存模型，得到四个模型文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tf-train-import-meta-graphimport-meta-grap-meta-graph-or-file-clear-devices-False-import-scope-None-kwargs"><span class="nav-number">1.0.2.</span> <span class="nav-text">tf.train.import_meta_graphimport_meta_grap(meta_graph_or_file,clear_devices=False,import_scope=None,**kwargs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf-train-latest-checkpoint-checkpoint-dir-这个方法获取"><span class="nav-number">1.0.3.</span> <span class="nav-text">如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cross-Entropy-cost-function交叉熵损失函数"><span class="nav-number">1.</span> <span class="nav-text">Cross-Entropy cost function交叉熵损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这种典型的cost函数在tensorflo里面代码如下：把向量化后的图片-x-和权重矩阵-W-相乘，加上偏置-b-，然后计算每个分类的softmax概率值。"><span class="nav-number">1.0.1.</span> <span class="nav-text">这种典型的cost函数在tensorflo里面代码如下：把向量化后的图片 x 和权重矩阵 W 相乘，加上偏置 b ，然后计算每个分类的softmax概率值。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意，-tf-reduce-sum-把minibatch里的每张图片的交叉熵值都加起来了。我们计算的交叉熵是指整个minibatch的。"><span class="nav-number">1.0.2.</span> <span class="nav-text">注意， tf.reduce_sum 把minibatch里的每张图片的交叉熵值都加起来了。我们计算的交叉熵是指整个minibatch的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#但是上文的网络的output先经过了softmax操作，tensorflow的默认计算cost函数tf-nn-softmax-cross-entropy-with-logits是不需要在输入前对网络的output进行softmax的："><span class="nav-number">1.0.3.</span> <span class="nav-text">但是上文的网络的output先经过了softmax操作，tensorflow的默认计算cost函数tf.nn.softmax_cross_entropy_with_logits是不需要在输入前对网络的output进行softmax的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意这里的onehot-labels需要对样本类别标签进行onthot编码，onehot编码是机器学习中常用的工具，假如当前训练样本共5个类，当前label为3，onthot后为00100，类别5编码后是00001-对应代码是onehot-labelstf-one-hot-y-n-classes"><span class="nav-number">1.0.4.</span> <span class="nav-text">注意这里的onehot_labels需要对样本类别标签进行onthot编码，onehot编码是机器学习中常用的工具，假如当前训练样本共5个类，当前label为3，onthot后为00100，类别5编码后是00001 对应代码是onehot_labelstf.one_hot(y,n_classes)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谈一下对损失函数计算的理解"><span class="nav-number">1.1.</span> <span class="nav-text">谈一下对损失函数计算的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#假如batchsize-8"><span class="nav-number">1.1.1.</span> <span class="nav-text">假如batchsize=8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练样本总类别为5"><span class="nav-number">1.1.2.</span> <span class="nav-text">训练样本总类别为5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么一个batchsize的数据经过神经网络最后的输出为-8，5"><span class="nav-number">1.1.3.</span> <span class="nav-text">那么一个batchsize的数据经过神经网络最后的输出为[8，5]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对其进行softmax操作之后每一行5个元素的含义就是属于五个类别的概率，假如当前某一个正确标签为2的softmax输出为-0-1-0-5，0-01，0-3，0-09-那么它的cost为-log-0-1-0-5，0-01，0-3，0-09-0-1-0-0-0-T-0-1-0-0-0-T是一个列向量，cost-log-0-5-0-3，我们的目的是使得cost最小，由于-log-1-0是最小值，因此我们就是不断让该样本的分数向着自己正确类别对应的概率靠近。-对于同一个batch内部不用的样本，分别像上面一样计算然后求mean或者sum最后cost的值，然后最小化cost即可！"><span class="nav-number">1.1.4.</span> <span class="nav-text">对其进行softmax操作之后每一行5个元素的含义就是属于五个类别的概率，假如当前某一个正确标签为2的softmax输出为[0.1,0.5，0.01，0.3，0..09] 那么它的cost为-log([0.1,0.5，0.01，0.3，0..09])*[0,1,0,0,0]T ,[0,1,0,0,0]T是一个列向量，cost=-log(0.5)=0.3，我们的目的是使得cost最小，由于-log(1)=0是最小值，因此我们就是不断让该样本的分数向着自己正确类别对应的概率靠近。 对于同一个batch内部不用的样本，分别像上面一样计算然后求mean或者sum最后cost的值，然后最小化cost即可！</span></a></li></ol></li></ol></div>
             
 
           </div>
