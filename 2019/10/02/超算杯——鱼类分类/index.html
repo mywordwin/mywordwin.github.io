@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="鱼类分类 cnn,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="对鱼类进行分类">
+<meta name="keywords" content="鱼类分类 cnn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超算杯——鱼类分类">
+<meta property="og:url" content="http://mywordwin.cn/2019/10/02/超算杯——鱼类分类/index.html">
+<meta property="og:site_name" content="On the way">
+<meta property="og:description" content="对鱼类进行分类">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-02T07:51:51.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="超算杯——鱼类分类">
+<meta name="twitter:description" content="对鱼类进行分类">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mywordwin.cn/2019/10/02/超算杯——鱼类分类/">
+
+
+
+
+
+  <title>超算杯——鱼类分类 | On the way</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">On the way</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mywordwin.cn/2019/10/02/超算杯——鱼类分类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mywordwin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="On the way">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">超算杯——鱼类分类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-02T11:51:12+08:00">
+                2019-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Project/" itemprop="url" rel="index">
+                    <span itemprop="name">Project</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="对鱼类进行分类"><a href="#对鱼类进行分类" class="headerlink" title="对鱼类进行分类"></a>对鱼类进行分类</h1><a id="more"></a>
+<h3 id="有些事，勇敢的去做了，就成功了一半。-我说的，哈哈哈-初赛过了，挺意外，决赛好好弄。初赛要求：给了25类鱼的图片数据，要求输出到txt中种类，z为不属于25类中的其他，predict-py运行在python命令行下输入：python-T43498920-test-py-home-test-images-T43498920-test-txt即可运行，结果保存在txt中。"><a href="#有些事，勇敢的去做了，就成功了一半。-我说的，哈哈哈-初赛过了，挺意外，决赛好好弄。初赛要求：给了25类鱼的图片数据，要求输出到txt中种类，z为不属于25类中的其他，predict-py运行在python命令行下输入：python-T43498920-test-py-home-test-images-T43498920-test-txt即可运行，结果保存在txt中。" class="headerlink" title="有些事，勇敢的去做了，就成功了一半。     -我说的，哈哈哈  初赛过了，挺意外，决赛好好弄。初赛要求：给了25类鱼的图片数据，要求输出到txt中种类，z为不属于25类中的其他，predict.py运行在python命令行下输入：python T43498920_test.py /home/test_images T43498920_test.txt即可运行，结果保存在txt中。"></a>有些事，勇敢的去做了，就成功了一半。     -我说的，哈哈哈  初赛过了，挺意外，决赛好好弄。初赛要求：给了25类鱼的图片数据，要求输出到txt中种类，z为不属于25类中的其他，predict.py运行在python命令行下输入：python T43498920_test.py /home/test_images T43498920_test.txt即可运行，结果保存在txt中。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">模型设计采用python语言，keras框架。这种子类别图像分类本应该首先找到前景对象 (鱼 )及其局部区域, 之后分别对这些区域提取特征，对所得到的特征进行适当的处理之后, 用来完成分类器的训练和预测，但采用最简单的cnn进行图像分类后发现结果还可以，于是便采用了直接对整幅图像进行读取训练。</span><br><span class="line">      数据读取部分：依次读入标注数据文件夹下的图片，并将其更改大小resize为224*224，将其转为数组img_to_array，存入data列表中，同时将标签（1,2,3...）存入labels列表中。将data列表转化为数组，除以255.0，labels列表也转为数组，以8:2的比例分为训练数据和测试数据。数据增强进行了水平翻转，旋转，水平垂直平移。</span><br><span class="line">      模型搭建：建立一个CNN模型，一层卷积、一层池化、一层卷积、一层池化、抹平之后进行全链接、最后进行分类，其中flatten是将多维输入一维化的函数，dense是全连接层，最后以softmax激活函数计算和为1的概率。</span><br><span class="line">      模型预测：载入模型，将测试图片依次读入，并改为224*224大小，转为数组并除以225.0，取概率最大的为预测结果，经过在未标注数据上的测试，噪声的预测结果基本都小于0.94，小于0.94的预测为z类。</span><br></pre></td></tr></table></figure>
+<p>net.py构建网络<br><div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing.image <span class="keyword">import</span> ImageDataGenerator</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Conv2D,MaxPooling2D,Dense,Flatten,Activation,Dropout</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing.image <span class="keyword">import</span> img_to_array</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> to_categorical</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> Adam</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Build</span><span class="params">(width,height,depth,classes)</span>:</span></span><br><span class="line">    inputShape = (height, width, depth)</span><br><span class="line">    <span class="comment">#first</span></span><br><span class="line">    model=Sequential()</span><br><span class="line">    model.add(Conv2D(<span class="number">20</span>,(<span class="number">5</span>,<span class="number">5</span>),padding=<span class="string">'same'</span>,input_shape=inputShape))</span><br><span class="line">    model.add(Activation(<span class="string">'relu'</span>))</span><br><span class="line">    model.add(MaxPooling2D(pool_size=(<span class="number">2</span>,<span class="number">2</span>),strides=(<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line">    <span class="comment">#second</span></span><br><span class="line">    model.add(Conv2D(<span class="number">50</span>, (<span class="number">5</span>, <span class="number">5</span>), padding=<span class="string">'same'</span>))</span><br><span class="line">    model.add(Activation(<span class="string">'relu'</span>))</span><br><span class="line">    model.add(MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=(<span class="number">2</span>, <span class="number">2</span>)))</span><br><span class="line">    <span class="comment">#fc</span></span><br><span class="line">    model.add(Flatten())</span><br><span class="line">    model.add(Dense(<span class="number">500</span>))</span><br><span class="line">    model.add(Activation(<span class="string">'relu'</span>))</span><br><span class="line">    <span class="comment">#dropout</span></span><br><span class="line">    model.add(Dropout(<span class="number">0.4</span>))</span><br><span class="line">    <span class="comment">#fc</span></span><br><span class="line">    model.add(Dense(<span class="number">25</span>))</span><br><span class="line">    model.add(Activation(<span class="string">'softmax'</span>))</span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span><span class="params">()</span>:</span></span><br><span class="line">    random.seed(<span class="number">1</span>)</span><br><span class="line">    t=<span class="number">-1</span></span><br><span class="line">    data=[]</span><br><span class="line">    labels=[]</span><br><span class="line">    dir = <span class="string">"D:/BaiduNetdiskDownload/T1_ImageData/"</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(dir):</span><br><span class="line">        t+=<span class="number">1</span></span><br><span class="line">        dir = <span class="string">"D:/BaiduNetdiskDownload/T1_ImageData/%s/标注数据/"</span> % i</span><br><span class="line">        <span class="keyword">for</span> photo <span class="keyword">in</span> os.listdir(dir):</span><br><span class="line">            path = dir + <span class="string">"%s"</span> % photo</span><br><span class="line">            image = cv2.imdecode(np.fromfile(path, dtype=np.uint8), <span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">if</span> image <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> image.shape[<span class="number">2</span>] == <span class="number">3</span>:</span><br><span class="line">                    <span class="comment"># print(path)</span></span><br><span class="line">                    image = cv2.resize(image, (<span class="number">224</span>, <span class="number">224</span>))</span><br><span class="line">                    image = img_to_array(image)</span><br><span class="line"></span><br><span class="line">                    data.append(image)</span><br><span class="line">                    labels.append(t)</span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    data = np.array(data, dtype=<span class="string">"float"</span>)</span><br><span class="line">    data= np.true_divide(data,<span class="number">255.0</span>)</span><br><span class="line">    labels = np.array(labels)</span><br><span class="line">    (trainX, testX, trainY, testY) = train_test_split(data,labels, test_size=<span class="number">0.2</span>, random_state=<span class="number">1</span>)</span><br><span class="line">    trainY = to_categorical(trainY, num_classes=<span class="number">25</span>)</span><br><span class="line">    testY = to_categorical(testY, num_classes=<span class="number">25</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> trainX, trainY, testX, testY</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(trainX,trainY,testX,testY)</span>:</span></span><br><span class="line">    EPOCHS=<span class="number">200</span></span><br><span class="line">    BS=<span class="number">32</span></span><br><span class="line">    model= Build(width=<span class="number">224</span>, height=<span class="number">224</span>, depth=<span class="number">3</span>, classes=<span class="number">25</span>)</span><br><span class="line">    adm= Adam(lr=<span class="number">1e-3</span>)</span><br><span class="line">    model.compile(loss=<span class="string">"categorical_crossentropy"</span>, optimizer=adm,metrics=[<span class="string">"accuracy"</span>])</span><br><span class="line">    aug = ImageDataGenerator(rotation_range=<span class="number">30</span>, width_shift_range=<span class="number">0.1</span>,</span><br><span class="line">        height_shift_range=<span class="number">0.1</span>, shear_range=<span class="number">0.2</span>, zoom_range=<span class="number">0.2</span>,</span><br><span class="line">        horizontal_flip=<span class="literal">True</span>, fill_mode=<span class="string">"nearest"</span>)</span><br><span class="line"></span><br><span class="line">    H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),</span><br><span class="line">        validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,</span><br><span class="line">        epochs=EPOCHS, verbose=<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 评估模型</span></span><br><span class="line">    loss, accuracy = model.evaluate(testX,testY)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    model.save(<span class="string">'model-32.h5'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    trainX, trainY, testX, testY =load_data()</span><br><span class="line">    train(trainX, trainY, testX, testY)</span><br></pre></td></tr></table></figure>
+
+</div></div></p>
+<p>预测predict.py<br><div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> keras.preprocessing.image <span class="keyword">import</span> img_to_array</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> load_model</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">np.set_printoptions(suppress=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">path=sys.argv[<span class="number">1</span>]</span><br><span class="line">txtname=sys.argv[<span class="number">2</span>]</span><br><span class="line">path=<span class="string">"%s/"</span>%path</span><br><span class="line"></span><br><span class="line">Class=[<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"F"</span>,<span class="string">"G"</span>,<span class="string">"H"</span>,<span class="string">"I"</span>,<span class="string">"J"</span>,<span class="string">"K"</span>,<span class="string">"L"</span>,<span class="string">"M"</span>,<span class="string">"N"</span>,<span class="string">"O"</span>,<span class="string">"P"</span>,<span class="string">"Q"</span>,<span class="string">"R"</span>,<span class="string">"S"</span>,<span class="string">"T"</span>,<span class="string">"U"</span>,<span class="string">"V"</span>,<span class="string">"W"</span>,<span class="string">"X"</span>,<span class="string">"Y"</span>]</span><br><span class="line">model=load_model(<span class="string">"model-200.h5"</span>)</span><br><span class="line">f = open(<span class="string">"%s"</span>%txtname, <span class="string">"w+"</span>)</span><br><span class="line">path_list=os.listdir(path)</span><br><span class="line">path_list.sort()</span><br><span class="line"><span class="keyword">for</span> photo <span class="keyword">in</span> path_list:</span><br><span class="line">    dir=path+photo</span><br><span class="line">    image = cv2.imread(dir)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> image <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> image.shape[<span class="number">2</span>] == <span class="number">3</span>:</span><br><span class="line">            image = cv2.resize(image, (<span class="number">224</span>, <span class="number">224</span>))</span><br><span class="line">            image = image.astype(<span class="string">"float"</span>)</span><br><span class="line">            image = np.true_divide(image, <span class="number">255.0</span>)</span><br><span class="line">            image = img_to_array(image)</span><br><span class="line">            image = np.expand_dims(image, axis=<span class="number">0</span>)</span><br><span class="line">            predict = model.predict(image)</span><br><span class="line">            acc = np.max(predict)</span><br><span class="line">            result = np.argmax(predict, axis=<span class="number">1</span>)</span><br><span class="line">            fishclass=Class[result[<span class="number">0</span>]]</span><br><span class="line">            <span class="keyword">if</span>(acc&lt;<span class="number">0.94</span>):</span><br><span class="line">                fishclass=<span class="string">"Z"</span></span><br><span class="line">            <span class="comment">#print(predict*100)</span></span><br><span class="line">            print(<span class="string">"%s  %s  %s"</span> % (photo, acc * <span class="number">100</span>, fishclass))</span><br><span class="line"></span><br><span class="line">            f.write(<span class="string">"%s,%s\n"</span>%(photo,fishclass))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+</div></div></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    mywordwin
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://mywordwin.cn/2019/10/02/超算杯——鱼类分类/" title="超算杯——鱼类分类">http://mywordwin.cn/2019/10/02/超算杯——鱼类分类/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/鱼类分类-cnn/" rel="tag"># 鱼类分类 cnn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/13/损失函数/" rel="next" title="损失函数">
+                <i class="fa fa-chevron-left"></i> 损失函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM2OC8xOTkwOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="mywordwin">
+            
+              <p class="site-author-name" itemprop="name">mywordwin</p>
+              <p class="site-description motion-element" itemprop="description">个人博客，涉及计算机知识以及学习过程中遇到的困难和疑惑。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mywordwin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:2361618726@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=2361618726&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对鱼类进行分类"><span class="nav-number">1.</span> <span class="nav-text">对鱼类进行分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有些事，勇敢的去做了，就成功了一半。-我说的，哈哈哈-初赛过了，挺意外，决赛好好弄。初赛要求：给了25类鱼的图片数据，要求输出到txt中种类，z为不属于25类中的其他，predict-py运行在python命令行下输入：python-T43498920-test-py-home-test-images-T43498920-test-txt即可运行，结果保存在txt中。"><span class="nav-number">1.0.1.</span> <span class="nav-text">有些事，勇敢的去做了，就成功了一半。     -我说的，哈哈哈  初赛过了，挺意外，决赛好好弄。初赛要求：给了25类鱼的图片数据，要求输出到txt中种类，z为不属于25类中的其他，predict.py运行在python命令行下输入：python T43498920_test.py /home/test_images T43498920_test.txt即可运行，结果保存在txt中。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mywordwin</span>
+
+  
+</div>
+<span id="sitetime"></span>
+<script language="javascript">
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var t1 = Date.UTC(2018,03,08,15,00,00); 
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行"+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+	siteTime();
+</script>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300,"bottom":-30},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>
